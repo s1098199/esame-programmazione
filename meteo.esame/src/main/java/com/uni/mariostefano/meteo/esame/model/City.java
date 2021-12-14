@@ -2,6 +2,7 @@ package com.uni.mariostefano.meteo.esame.model;
 
 import java.util.Vector;
 
+
 //La seguenta classe descrive la creazione delle città
 	public class City {
 		
