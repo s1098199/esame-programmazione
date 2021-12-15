@@ -157,6 +157,5 @@ import java.util.Vector;
 		 return "id=" + id + ", name=" + name + ", coordinates=" + coordinates + ", Nation=" + Nation
 					+ ", forecastsArray=" + toString() + ""; 
 		}
-		
-		
+				
 }
