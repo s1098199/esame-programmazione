@@ -10,8 +10,7 @@ import java.util.Vector;
 		private String Nation;
 		private long id;
 		private Coordinates coordinates;
-		private Vector<forecasts> vector = new Vector<forecasts>();
-		
+		private Vector<forecasts> vector = new Vector<forecasts>();		
 
 	/**Costruttore dell'Id della città
 	* @param id        ID della città
