@@ -1,162 +1,114 @@
 package com.uni.mariostefano.meteo.esame.model;
 
-
 	/**
 	 * Classe che rappresenta le previsioni del meteo restrette
 	 */
 	
-public class forecasts {
-		private String main;
-		private String description;
-		private double temp_max;
-		private double temp_min;
-		private double Perceived_temperature;
+public class forecasts{
+		private double current_temperature;
+		private double pressure;
+		private double humidity;
 		private String data;
 		
 		//costruttore
 		
 		public forecasts() {
-			this.main = null;
-			this.description = null;
-			this.temp_max = 0;
-			this.temp_min = 0;
-			this.Perceived_temperature = 0;
+			this.current_temperature = 0;
 			this.data = null;
 		}
 		
 		/**costruttore
-		 * @param main        Informaizoni generali sul meteo
-		 * @param description Descrizione del meteo
+		 * @param current_temperature       Informazioni riguardante la temperature attuale
+		 * @param pressure                  Informazioni sulla pressione
 		 */
 		
-		public forecasts (String main, String description) {
+		public forecasts (double current_temperature, double pressure) {
 			super();
-			this.main = main;
-			this.description = description;
+			this.current_temperature = current_temperature;
+			this.pressure = pressure;
 		}
 		
 		/** Costruttore 
-	     * @param main            Informaizone generale sul meteo.
-	     * @param description     Descrizione del meteo.
-	     * @param temp_max        Temperatura massima
-	     * @param temp_min        Temperatura minima
+	     * @param current_temperature     Informazione attuali sulla temperatura
+	     * @param pressure                Informazioni sulla pressione
+	     * @param humidity                Infomrazioni sull'umidità
 	     */
-		public forecasts (String main, String description, double temp_max, double temp_min) {
+		public forecasts (double current_temperature, double pressure, double humidity) {
 			super();
-			this.main = main;
-			this.description = description;
-			this.temp_max = temp_max;
-			this.temp_min = temp_min;
+			this.current_temperature = current_temperature;
+			this.pressure = pressure;
+			this.humidity = humidity;
+
 		}
 
 		
 		/** Costruttore
-	     * @param main                        Indicazione generale sul meteo.
-	     * @param description                 Descrizione del meteo.
-	     * @param temp_max                    Temperatura massima
-	     * @param temp_min                    Temperatura minima
-	     * @param Perceived_temperature       Temperatura percepita
+	     * @param current_temperature        Informazioni attuali sulla temperatura
+	     * @param pressure                    Infomrazioni sulla pressione
+	     * @param humidity                    Informazioni sull'umidità
 	     * @param data                        Giorno e ora a cui si riferisce la previsione
 	     */
-		public forecasts (String main, String description, double temp_max, double temp_min, 
-				String data) {
+		public forecasts (double current_temperature, double pressure, double humidity, String data) {
 			super();
-			this.main = main;
-			this.description = description;			
-			this.temp_max = temp_max;
-			this.temp_min = temp_min;
-			this.Perceived_temperature = Perceived_temperature;
+			this.current_temperature = current_temperature;
+			this.pressure = pressure;			
+			this.humidity = humidity;
 			this.data = data;
 		}
 		
 		/**
-		 * Metodo che restituisce  le infomrazioni principali sul meteo
-		 * @return main
+		 * Metodo che restituisce  le infomrazioni riguardanti la temperatura attuale
+		 * @return current_temperature
 		 */
 
-		public String getMain() {
-			return main;
+		public double getcurrent_temperature() {
+			return current_temperature;
 		}
 		
 		/**
-		 * Metodo che setta il main
-		 * @param  String main
+		 * Metodo che setta il current_temperature
+		 * @param  double current_temperature
 		 */
 
-		public void setMain(String main) {
-			this.main = main;
+		public void setcurrent_temperature(double current_temperature) {
+			this.current_temperature = current_temperature;
 		}
 		
 		/**
-		 * Metodo che restituisce la descrizione del meteo
-		 * @return description
+		 * Metodo che restituisce le informazioni riguardanti la pressione
+		 * @return pressure
 		 */
 
-		public String getDescription() {
-			return description;
+		public double getpressure() {
+			return pressure;
 		}
 		
 		/**
-		 * Metodo che setta la descrizione del meteo
-		 * @param  String description
+		 * Metodo che setta le informazioni riguardanti la pressione
+		 * @param  double pressure
 		 */
-		public void setDescription(String description) {
-			this.description = description;
+		public void setpressure(double pressure) {
+			this.pressure = pressure;
 		}
 		
 		/**
-		 * Metodo che restituisce la temperatura massima
-		 * @return  temp_max
+		 * Metodo che restituisce le informazioni riguardanti l'umidità
+		 * @return  humidity
 		 */
 
-		public double getTemp_max() {
-			return temp_max;
+		public double gethumidity() {
+			return humidity;
 		}
 		
 		/**
-		 * Metodo che setta la temperatura massima
-		 * @param  double temp_max
+		 * Metodo che setta le informazioni riguardanti l'umidità
+		 * @param  double humidity
 		 */
 
-		public void setTemp_max(double temp_max) {
-			this.temp_max = temp_max;
+		public void sethumidity(double humidity) {
+			this.humidity = humidity;
 		}
 		
-		/**
-		 * Metodo che restituisce la temperatura minima
-		 * @return temp_ min
-		 */
-
-		public double getTemp_min() {
-			return temp_min;
-		}
-		
-		/**
-		 * Metodo che setta la temperatura minima
-		 * @param  double temp_min
-		 */
-
-		public void setTemp_min(double temp_min) {
-			this.temp_min = temp_min;
-		}
-		
-		/**
-		 * Metodo che restituisce la temperatura percepita
-		 * @return Perceived_temperature
-		 */
-
-		public double getPerceived_temperature() {
-			return Perceived_temperature;
-		}
-		
-		/**
-		 * Metodo che setta la temperatura percepita
-		 * @param  double perceived_temperature
-		 */
-
-		public void setPerceived_temperature(double perceived_temperature) {
-			Perceived_temperature = perceived_temperature;
-		}
 		
 		/**
 		 * Metodo che restituisce la data (giorno ed ora)
@@ -182,8 +134,8 @@ public class forecasts {
 		 */
 		@Override
 		public String toString() {
-			return  "main=" + main + ", description=" + description + "data=" + data +", temp_max="
-					+ temp_max + ", temp_min=" + temp_min + ", Perceived_temperature=" + Perceived_temperature + "";
+			return  "current_temperature=" + current_temperature + ", pressure=" + pressure + "data=" + data +", humidity="
+					+ humidity ;
 		}
 	
 
