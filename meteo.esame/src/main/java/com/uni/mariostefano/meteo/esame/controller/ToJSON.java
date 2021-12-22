@@ -1,0 +1,59 @@
+package com.uni.mariostefano.meteo.esame.controller;
+
+
+	import org.json.JSONObject;
+	import com.uni.mariostefano.meteo.esame.model.*;
+
+
+
+
+	/** Questa classe contiene il metodo per la scrittura di una città in un JSONObject.
+	 *  @author Stefano Bandello
+	 *  @author Mario De Berardinis
+	 */
+	public class ToJSON {
+		City city = new City();
+		
+
+		
+		/**
+		 * Questo metodo restituisce il JSONObject corrispondente all'oggetto City passato in ingresso.
+		 * 
+		 * @param city città che si vuole come un JSONObject.
+		 * @return il JSONObject che rappresenta la città.
+		 */
+		public JSONObject ToJSON(City city) {
+			
+			
+			JSONObject object = new JSONObject();
+			
+			object.put("name", city.getName());
+			object.put("Nation", city.getNation());
+			object.put("id", city.getId());
+			JSONObject coordinates = new JSONObject();
+			coordinates.put("latitude", (city.getCoordinates()).getLatitude());
+			coordinates.put("longitude", (city.getCoordinates()).getLongitude());
+			object.put("coordinates", coordinates);
+			
+		//	JSONArray arr = new JSONArray();
+			
+			for(int i=0; i<(city.getVector()).size(); i++) {
+				JSONObject weather = new JSONObject();
+				forecasts.put("data", (city.getVector()).get(i).getData());
+				forecasts.put("humidity", (city.getVector()).get(i).gethumidity());
+				forecasts.put("temp_max", (city.getVector()).get(i).getTemp_max());
+				forecasts.put("temp_min",(city.getVector()).get(i).getTemp_min());
+				forecasts.put("pressure", (city.getVector()).get(i).getpressure());
+				arr.put(forecasts);
+			}
+			
+			
+			object.put("Weather", arr);
+			
+			return object;
+		}
+		
+		
+	}
+
+

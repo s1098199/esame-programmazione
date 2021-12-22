@@ -9,6 +9,9 @@ public class forecasts{
 		private double pressure;
 		private double humidity;
 		private String data;
+		private double temp_max;
+		private double temp_min;
+		
 		
 		//costruttore
 		
@@ -43,21 +46,62 @@ public class forecasts{
 
 		
 		/** Costruttore
-	     * @param current_temperature        Informazioni attuali sulla temperatura
+	     * @param current_temperature         Informazioni attuali sulla temperatura
 	     * @param pressure                    Infomrazioni sulla pressione
 	     * @param humidity                    Informazioni sull'umidità
 	     * @param data                        Giorno e ora a cui si riferisce la previsione
+	     * @param temp_max                    Informazioni sulla temperatura massima
+	     * @param temp_min                    Infomrazioni sulla temperatura minima
 	     */
-		public forecasts (double current_temperature, double pressure, double humidity, String data) {
+		public forecasts (double current_temperature, double pressure, double humidity, String data,
+				double temp_max,double temp_min) {
 			super();
 			this.current_temperature = current_temperature;
 			this.pressure = pressure;			
 			this.humidity = humidity;
 			this.data = data;
+			this.temp_max = temp_max;
+			this.temp_min = temp_min;
+			
 		}
 		
 		/**
-		 * Metodo che restituisce  le infomrazioni riguardanti la temperatura attuale
+		 * Metodo che restituisce la temperatura massima
+		 * @return temp_max
+		 */
+		public Double getTemp_max() {
+			return temp_max;
+		}
+		
+		/**
+		 * Metodo che setta la temp_max
+		 * @param temp_max
+		 */
+
+		public void setTemp_max(double temp_max) {
+			this.temp_max = temp_max;
+		}
+		
+		/**
+		 * Metodo che restituisce la temperatura minima
+		 * @return temp_min
+		 */
+
+		public double getTemp_min() {
+			return temp_min;
+		}
+		
+		/**
+		 * Metodo che setta la temperatura minima
+		 * @param temp_min
+		 */
+
+		public void setTemp_min(double temp_min) {
+			this.temp_min = temp_min;
+		}
+
+		/**
+		 * Metodo che restituisce  le informazioni riguardanti la temperatura attuale
 		 * @return current_temperature
 		 */
 
@@ -137,6 +181,6 @@ public class forecasts{
 			return  "current_temperature=" + current_temperature + ", pressure=" + pressure + "data=" + data +", humidity="
 					+ humidity ;
 		}
-	
+
 
 }

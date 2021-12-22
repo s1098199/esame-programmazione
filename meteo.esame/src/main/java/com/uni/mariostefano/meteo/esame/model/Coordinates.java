@@ -20,7 +20,7 @@ public class Coordinates {
 	 * metodo che restituisce la latitudine
 	 * @return latitude
 	 */
-	public double getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
 

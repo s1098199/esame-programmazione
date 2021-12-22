@@ -43,13 +43,13 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 	
 	
 	/**
-	 * api_key è la key necessaria per ottenere informazioni da OpenWeather.
+	 * api_key è la key necessaria per ottenere informazioni.
 	 */
 	private String api_key = "666efac3e1caf3f728f8c5860edeb469";
 	
 	
 	/**
-	 * Questo metodo va a prendere da OpenWeather le previsioni meteo di una città.
+	 * Questo metodo prendere da forecasts le previsioni meteo di una città.
 	 * @param è il nome della città di cui si vuole conoscere le previsioni meteo.
 	 * @return un JSONObject contenente le previsioni meteo complete.
 	 */

@@ -10,7 +10,12 @@ import java.util.Vector;
 		private String Nation;
 		private long id;
 		private Coordinates coordinates;
-		private Vector<forecasts> vector = new Vector<forecasts>();		
+		private Vector<forecasts> vector = new Vector<forecasts>();	
+		
+		public City() {
+			super();
+		}
+		
 
 	/**Costruttore dell'Id della città
 	* @param id        ID della città
@@ -59,15 +64,16 @@ import java.util.Vector;
 		 * @param coordinates  coordinate della città
 		 * @param vector       vettore delle previsioni ristrette
 		*/
-		public City(long id, String name, Coordinates coordinates, String Nation, double 
-				pressure, float humidity, int temperature) {
-			this.id = id;
-			this.name = name;
-			this.coordinates = coordinates;
-			this.Nation = Nation;
-			//this.vector = vector;
-		}
 	
+	
+	public City(long id, String name, Coordinates coordinates, String Nation, double 
+			pressure, float humidity, int temperature) {
+		this.id = id;
+		this.name = name;
+		this.coordinates = coordinates;
+		this.Nation = Nation;
+			// TODO Auto-generated constructor stub
+		}
 	/**
 	 * Metodo che restituisce il nome	
 	 * @return name

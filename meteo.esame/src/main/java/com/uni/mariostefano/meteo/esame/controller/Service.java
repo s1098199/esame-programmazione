@@ -3,7 +3,7 @@ package com.uni.mariostefano.meteo.esame.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.json.simple.JSONObject;
+import org.json.JSONObject;
 
 //import org.json.JSONArray;
 import com.uni.mariostefano.meteo.esame.exception.EmptyString;
