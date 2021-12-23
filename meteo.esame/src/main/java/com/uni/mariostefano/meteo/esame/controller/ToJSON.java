@@ -1,9 +1,13 @@
 package com.uni.mariostefano.meteo.esame.controller;
 
 
-	import org.json.JSONObject;
+	import org.json.simple.*;
 	import com.uni.mariostefano.meteo.esame.model.*;
-
+	import org.json.simple.JSONArray;
+	import org.json.simple.JSONObject;
+	import org.json.simple.parser.JSONParser;
+	import org.json.simple.parser.ParseException;
+	import java.util.*;
 
 
 
@@ -35,16 +39,16 @@ package com.uni.mariostefano.meteo.esame.controller;
 			coordinates.put("longitude", (city.getCoordinates()).getLongitude());
 			object.put("coordinates", coordinates);
 			
-		//	JSONArray arr = new JSONArray();
+			JSONArray arr = new JSONArray();
 			
 			for(int i=0; i<(city.getVector()).size(); i++) {
-				JSONObject weather = new JSONObject();
+				JSONObject forecasts = new JSONObject();
 				forecasts.put("data", (city.getVector()).get(i).getData());
 				forecasts.put("humidity", (city.getVector()).get(i).gethumidity());
 				forecasts.put("temp_max", (city.getVector()).get(i).getTemp_max());
 				forecasts.put("temp_min",(city.getVector()).get(i).getTemp_min());
 				forecasts.put("pressure", (city.getVector()).get(i).getpressure());
-				arr.put(forecasts);
+				 arr.put(forecasts);
 			}
 			
 			

@@ -21,7 +21,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.uni.mariostefano.meteo.esame.model.City;
 
-import org.json.simple.JSONObject;
+import org.json.simple.*;
 import org.springframework.stereotype.Service;
 
 import com.uni.mariostefano.meteo.esame.exception.ExceptionCity;
@@ -30,6 +30,10 @@ import com.uni.mariostefano.meteo.esame.exception.WrongPeriod;
 import com.uni.mariostefano.meteo.esame.exception.WrongValue;
 import com.uni.mariostefano.meteo.esame.model.*;
 //import com.project.WeatherApp.utils.error.ErrorCalculator;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 
 /** Questa classe è l'implementazione dell'interfaccia Service.
  * Contiene i metodi che vengono utilizzati dal controller.
@@ -64,11 +68,19 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 		
 		return obj;
 		
+	
+	try{
+	      BufferedWriter out = new BufferedWriter (new FileWriter(api_key));
+	      out.write(obj.toJSONString());
+	      out.close();
+	}
+	catch(IOException e){
+	          System.out.println("error");
+	          System.out.println(e);
 	}
 
 
-
+	}
 }
-
 
 
