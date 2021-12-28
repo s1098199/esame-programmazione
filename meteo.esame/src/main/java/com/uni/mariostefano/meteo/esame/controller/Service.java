@@ -21,10 +21,14 @@ public interface Service {
 	
 	public abstract JSONObject getCityW(String city);
 	public abstract City getCityInfoApi(String city);
-	
+	public abstract JSONArray getPressurefromApi(String city);
+	public abstract JSONArray getHumidityfromApi(String city);
 	public abstract City getCityWeatherRistrictfromApi(String city);
 	public abstract String save(String city) throws IOException;
 	public String saveEveryHour(String cityName);
 	public abstract ArrayList<JSONObject> readHistoryError(ArrayList<String> cities,int error,String value,int period) throws EmptyString , ExceptionCity , WrongPeriod , WrongValue ,  IOException;
+	public abstract ArrayList<JSONArray> readHumidityHistory(ArrayList<String> cities,String period) throws EmptyString , ExceptionCity , WrongPeriod , WrongValue ,  IOException;
+	public abstract ArrayList<JSONArray> readPressureHistory(ArrayList<String> cities,String period) throws EmptyString , ExceptionCity , WrongPeriod , WrongValue ,  IOException;
+
 }
 	

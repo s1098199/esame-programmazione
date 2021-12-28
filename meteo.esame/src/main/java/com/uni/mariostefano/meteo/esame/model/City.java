@@ -67,7 +67,7 @@ import java.util.Vector;
 	
 	
 	public City(long id, String name, Coordinates coordinates, String Nation, double 
-			pressure, float humidity, int temperature) {
+			pressure, float humidity, int feels_like) {
 		this.id = id;
 		this.name = name;
 		this.coordinates = coordinates;

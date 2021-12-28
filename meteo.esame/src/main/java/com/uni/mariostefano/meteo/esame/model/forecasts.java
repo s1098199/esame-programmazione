@@ -5,7 +5,7 @@ package com.uni.mariostefano.meteo.esame.model;
 	 */
 	
 public class forecasts{
-		private double current_temperature;
+		private double feels_like;
 		private double pressure;
 		private double humidity;
 		private String data;
@@ -16,29 +16,29 @@ public class forecasts{
 		//costruttore
 		
 		public forecasts() {
-			this.current_temperature = 0;
+			this.feels_like = 0;
 			this.data = null;
 		}
 		
 		/**costruttore
-		 * @param current_temperature       Informazioni riguardante la temperature attuale
+		 * @param feels_like       Informazioni riguardante la temperature percepita
 		 * @param pressure                  Informazioni sulla pressione
 		 */
 		
-		public forecasts (double current_temperature, double pressure) {
+		public forecasts (double feels_like, double pressure) {
 			super();
-			this.current_temperature = current_temperature;
+			this.feels_like = feels_like;
 			this.pressure = pressure;
 		}
 		
 		/** Costruttore 
-	     * @param current_temperature     Informazione attuali sulla temperatura
+	     * @param feels_like              Informazione attuali sulla temperatura
 	     * @param pressure                Informazioni sulla pressione
 	     * @param humidity                Infomrazioni sull'umidità
 	     */
-		public forecasts (double current_temperature, double pressure, double humidity) {
+		public forecasts (double feels_like, double pressure, double humidity) {
 			super();
-			this.current_temperature = current_temperature;
+			this.feels_like = feels_like;
 			this.pressure = pressure;
 			this.humidity = humidity;
 
@@ -46,17 +46,17 @@ public class forecasts{
 
 		
 		/** Costruttore
-	     * @param current_temperature         Informazioni attuali sulla temperatura
+	     * @param feels_like                  Informazioni attuali sulla temperatura
 	     * @param pressure                    Infomrazioni sulla pressione
 	     * @param humidity                    Informazioni sull'umidità
 	     * @param data                        Giorno e ora a cui si riferisce la previsione
 	     * @param temp_max                    Informazioni sulla temperatura massima
 	     * @param temp_min                    Infomrazioni sulla temperatura minima
 	     */
-		public forecasts (double current_temperature, double pressure, double humidity, String data,
+		public forecasts (double feels_like, double pressure, double humidity, String data,
 				double temp_max,double temp_min) {
 			super();
-			this.current_temperature = current_temperature;
+			this.feels_like = feels_like;
 			this.pressure = pressure;			
 			this.humidity = humidity;
 			this.data = data;
@@ -101,21 +101,21 @@ public class forecasts{
 		}
 
 		/**
-		 * Metodo che restituisce  le informazioni riguardanti la temperatura attuale
-		 * @return current_temperature
+		 * Metodo che restituisce  le informazioni riguardanti la temperatura percepita
+		 * @return feels_like
 		 */
 
-		public double getcurrent_temperature() {
-			return current_temperature;
+		public double feels_like() {
+			return feels_like;
 		}
 		
 		/**
-		 * Metodo che setta il current_temperature
-		 * @param  double current_temperature
+		 * Metodo che setta il feels_like
+		 * @param  double feels_like
 		 */
 
-		public void setcurrent_temperature(double current_temperature) {
-			this.current_temperature = current_temperature;
+		public void setcurrent_temperature(double feels_like) {
+			this.feels_like = feels_like;
 		}
 		
 		/**
@@ -178,7 +178,7 @@ public class forecasts{
 		 */
 		@Override
 		public String toString() {
-			return  "current_temperature=" + current_temperature + ", pressure=" + pressure + "data=" + data +", humidity="
+			return  "feels_like=" + feels_like + ", pressure=" + pressure + "data=" + data +", humidity="
 					+ humidity ;
 		}
 
