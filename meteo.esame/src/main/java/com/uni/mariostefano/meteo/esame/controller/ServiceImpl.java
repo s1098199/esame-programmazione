@@ -12,9 +12,9 @@ import java.io.PrintWriter;
 import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import com.uni.mariostefano.meteo.esame.controller.*;
+
+
 
 import org.json.simple.JSONArray;
 import org.springframework.web.client.RestTemplate;
