@@ -10,7 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URI;
-import java.text.SimpleDateFormat;
+//import java.text.SimpleDateFormat;
 import java.util.*;
 import com.uni.mariostefano.meteo.esame.controller.*;
 
@@ -20,6 +20,7 @@ import org.json.simple.JSONArray;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.stereotype.Service;
 import com.uni.mariostefano.meteo.esame.model.City;
+
 
 import org.json.simple.*;
 
@@ -79,7 +80,7 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 		JSONObject object = getCityW(name);
 		JSONArray toGive = new JSONArray();
 			
-			JSONArray forecastsArray = object.getJSONArry("list");
+			JSONArray forecastsArray = object.getJSONArray("list");
 			JSONObject support;
 			int pressure;
 			String data;
@@ -107,7 +108,7 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 				JSONObject object = getCityW(name);
 				JSONArray toGive = new JSONArray();
 					
-					JSONArray forecastsArray = object.getJSONArry("list");
+					JSONArray forecastsArray = object.getJsonArray("list");
 					JSONObject support;
 					int humidity;
 					String data;
@@ -223,7 +224,7 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 			}
 				
 		
-			JSONArray array = new JSONArray(everything);
+			JSONArray array = new JSONArray (everything);
 	
 			return array;
 			
@@ -334,6 +335,53 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 	}					
 
  }
+
+
+	@Override
+	public City getCityInfoApi(String city) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public City getCityWeatherRistrictfromApi(String city) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public String save(String city) throws IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public String saveEveryHour(String cityName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public ArrayList<JSONArray> readHumidityHistory(ArrayList<String> cities, String period)
+			throws EmptyString, ExceptionCity, WrongPeriod, WrongValue, IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public ArrayList<JSONArray> readPressureHistory(ArrayList<String> cities, String period)
+			throws EmptyString, ExceptionCity, WrongPeriod, WrongValue, IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
 			
 }
 	
