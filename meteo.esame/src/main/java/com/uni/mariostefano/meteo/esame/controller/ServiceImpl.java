@@ -63,7 +63,7 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 		
 		RestTemplate rt = new RestTemplate();
 		
-		obj = new JSONObject(rt.getForObject(url, String.class));
+		obj = new JSONObject();
 		
 		return obj;
 	}
@@ -78,9 +78,9 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 	public JSONArray getPressurefromApi(String name) {
 		
 		JSONObject object = getCityW(name);
-		JSONArray toGive = new JSONArray();
+		//JSONArray toGive = new JSONArray();
 			
-			JSONArray forecastsArray = object.getJSONArray("list");
+			JSONArray forecastsArray = object.getJSONArray("main");
 			JSONObject support;
 			int pressure;
 			String data;
@@ -93,9 +93,11 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 				JSONObject toReturn = new JSONObject();
 				toReturn.put("Pressure", pressure);
 				toReturn.put("Data", data);
-				toGive.put(toReturn);
+			//	toGive.put(toReturn);
+				
 				
 			}
+			 
 	
 			/**
 			 * Questo metodo utilizza getCityW per  prendere le previsioni sulla umidità della città richiesta.
@@ -108,7 +110,7 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 				JSONObject object = getCityW(name);
 				JSONArray toGive = new JSONArray();
 					
-					JSONArray forecastsArray = object.getJsonArray("list");
+					JSONArray forecastsArray = getJSONArray("list");
 					JSONObject support;
 					int humidity;
 					String data;
@@ -144,7 +146,7 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 		
 		
 		
-		JSONArray forecastsArray = object.getJSONArray("list");
+		JSONArray forecastsArray = object.getJSONArray("main");
 		JSONObject counter;
 		
 		Vector<forecasts> vector = new Vector<forecasts>(forecastsArray.length());
@@ -156,14 +158,14 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 			for (int i = 0; i<forecastsArray.length(); i++) {
 				
 				forecasts weather = new forecasts();
-				counter = forecastsArray.getJSONObject(i);				
-				forecasts.setData(counter.getString("dt_txt"));
+				counter = ( forecastsArray).getJSONObject(i);				
+				forecasts.setData(counter.toJSONString("dt_txt"));
 				JSONArray arrayW = counter.getJSONArray("weather");
 				JSONObject objectW = arrayW.getJSONObject(0);
 				JSONObject objectW2 = counter.getJSONObject("");
 				forecasts.setTemp_max(objectW2.getDouble("temp_max"));
 				forecasts.setTemp_min(objectW2.getDouble("temp_min"));
-				forecasts.setfeels_like(objectW2.getDouble("feels_like"));
+				forecasts.setfeels_like(objectW2.getdouble("feels_like"));
 				forecasts.setpressure(objectW2.getDouble("pressure"));
 				forecasts.sethumidity(object.getdouble("humidity"));
 				vector.add(weather); 
@@ -224,7 +226,7 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 			}
 				
 		
-			JSONArray array = new JSONArray (everything);
+			JSONArray array = new JSONArray ();
 	
 			return array;
 			
@@ -270,7 +272,7 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 			}
 				
 		
-			JSONArray array = new JSONArray(everything);
+			JSONArray array = new JSONArray();
 	
 			return array;
 			
@@ -285,7 +287,7 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 	 * @param error è l'intero che rappresenta la soglia con cui si vuole filtrare.
 	 * @param value esprime il filtro che si vuole applicare, cioè se si vuole sapere quali città hanno un errore maggiore
 	 *        o minore dell'intero error che è stato inserito. Le stringhe ammesse sono: "$lt", "$gt" e "=".
-	 * @param period rappresenta i giorni di predizione (da 1 a 3 inclusi).
+	 * @param period rappresenta i giorni di predizione (da 1 a 7 inclusi).
 	 * @return restituisce l'ArrayList di JSONObject filtrati secondo i filtri indicati.
 	 * @throws EmptyString se almeno uno dei nomi inseriti è uguale alla stringa vuota.
 	 * @throws ExceptionCity se l'utente ha inserito una città di cui non è presente lo storico. Le stringhe ammesse
@@ -304,9 +306,9 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 					throw new ExceptionCity ("Città non trovata nello storico");
 			}
 		
-			if(period<1 || period>3)
+			if(period<1 || period>7)
 				throw new WrongPeriod(period + " non è un numero ammesso. Devi inserire un numero compreso tra "
-						+ "1 e 3 inclusi.");
+						+ "1 e 7 inclusi.");
 			
 			if(!(value.equals("$gt") || value.equals("$lt") || value.equals("=")))
 				throw new WrongValue(value+ " non è una stringa ammessa. "
@@ -354,7 +356,7 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 	@Override
 	public String save(String city) throws IOException {
 		// TODO Auto-generated method stub
-		return null;
+	return null;
 	}
 
 

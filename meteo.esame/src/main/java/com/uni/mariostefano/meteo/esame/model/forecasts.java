@@ -114,7 +114,7 @@ public class forecasts{
 		 * @param  double feels_like
 		 */
 
-		public void setcurrent_temperature(double feels_like) {
+		public void setfeels_like(double feels_like) {
 			this.feels_like = feels_like;
 		}
 		
