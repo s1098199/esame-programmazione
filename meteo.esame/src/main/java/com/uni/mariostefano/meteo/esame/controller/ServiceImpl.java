@@ -131,12 +131,11 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 
 
 	/**
-	 * Questo metodo utilizza getCityW per  selezionare le previsioni meteo ristrette (temperatura
-	 * massima, minima, percepita ).
+	 * Questo metodo utilizza getCityW per  selezionare le previsioni meteo ristrette (umidità, pressione, temperatura
+	 *  ).
 	 * @param name è il nome della città di cui si vogliono conoscere le previsioni ristrette.
-	 * @return un oggetto di tipo City che contiene tutte le informazioni richieste e anche le informazioni sulla città.
 	 */
-	public City getCityWrRistrictfromApi(String name) {
+	public void getCityWrRistrictfromApi(String name) {
 		
 		JSONObject object = getCityW(name);
 		
@@ -152,7 +151,7 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 		Vector<forecasts> vector = new Vector<forecasts>(forecastsArray.size());
 		
 		
-		try {
+	/*	try {
 			
 			
 			for (int i = 0; i<forecastsArray.size(); i++) {
@@ -180,7 +179,7 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 		city.setVector(vector);
 		
 		return city;
-		
+*/
 	}
 	
 
@@ -189,8 +188,7 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 	/**
 	 * Questo metodo viene richiamato da readHistoryError e da readPressurreHistory.
 	 * Si occupa della lettura dello storico della città passata in ingresso. A seconda che il flag sia true o false, il 
-	 * metodo andrà a leggere lo storico per il calcolo della soglia di errore e delle previsioni azzeccate oppure per 
-	 * le statistiche sulla Pressione.
+	 * metodo andrà a leggere lo storico 
 	 * 
 	 * @param name è il nome della città di cui si vuole leggere lo storico.
 	 * @param flag indica quale storico andare a leggere.
@@ -235,8 +233,7 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 	/**
 	 * Questo metodo viene richiamato da readHistoryError e da readHumidityHistory.
 	 * Si occupa della lettura dello storico della città passata in ingresso. A seconda che il flag sia true o false, il 
-	 * metodo andrà a leggere lo storico per il calcolo della soglia di errore e delle previsioni azzeccate oppure per 
-	 * le statistiche sulla umidità.
+	 * metodo andrà a leggere lo storico  
 	 * 
 	 * @param name è il nome della città di cui si vuole leggere lo storico.
 	 * @param flag indica quale storico andare a leggere.
@@ -341,7 +338,7 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 
 	@Override
 	public City getCityInfoApi(String city) {
-		// TODO Auto-generated method stub
+         // TODO Auto-generated method stub
 		return null;
 	}
 
