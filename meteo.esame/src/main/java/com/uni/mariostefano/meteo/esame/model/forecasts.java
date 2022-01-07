@@ -9,6 +9,7 @@ public class forecasts{
 		private double pressure;
 		private double humidity;
 		private String data;
+		private double temperature;
 		//private double temp_max;
 		//private double temp_min;
 		
@@ -67,6 +68,23 @@ public class forecasts{
 			
 		}
 		
+		/**
+		 * Metodo che restituisce la temperatura attuale
+		 * @return
+		 */
+		public double getTemperature() {
+			return temperature;
+		}
+		
+		/**
+		 * Metodo che setta la temperatura
+		 * @param temperature
+		 */
+
+		public void setTemperature(double temperature) {
+			this.temperature = temperature;
+		}
+
 		/**
 		 * Metodo che restituisce la temperatura massima
 		 * @return temp_max
