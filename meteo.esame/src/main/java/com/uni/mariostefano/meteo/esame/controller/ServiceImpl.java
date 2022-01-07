@@ -2,36 +2,24 @@ package com.uni.mariostefano.meteo.esame.controller;
 
 
 import java.io.BufferedReader;
-
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.URI;
-//import java.text.SimpleDateFormat;
-import java.util.*;
-import com.uni.mariostefano.meteo.esame.controller.*;
 
-
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Vector;
 
 import org.json.simple.JSONArray;
-import org.springframework.web.client.RestTemplate;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
-import com.uni.mariostefano.meteo.esame.model.City;
+import org.springframework.web.client.RestTemplate;
 
-
-import org.json.simple.*;
-
-import com.uni.mariostefano.meteo.esame.exception.ExceptionCity;
 import com.uni.mariostefano.meteo.esame.exception.EmptyString;
+import com.uni.mariostefano.meteo.esame.exception.ExceptionCity;
 import com.uni.mariostefano.meteo.esame.exception.WrongPeriod;
 import com.uni.mariostefano.meteo.esame.exception.WrongValue;
-import com.uni.mariostefano.meteo.esame.model.*;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import com.uni.mariostefano.meteo.esame.model.City;
+import com.uni.mariostefano.meteo.esame.model.forecasts;
 
 
 /** Questa classe è l'implementazione dell'interfaccia Service.
@@ -63,7 +51,7 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 		
 		RestTemplate rt = new RestTemplate();
 		
-		obj = new JSONObject();
+		obj = new JSONObject (rt.getForObject(url, JSONObject.class));
 		
 		return obj;
 	}
@@ -78,25 +66,29 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 	public JSONArray getPressurefromApi(String name) {
 		
 		JSONObject object = getCityW(name);
-		//JSONArray toGive = new JSONArray();
+		JSONArray toGive = new JSONArray();
 			
-			JSONArray forecastsArray = object.getJSONArray("main");
-			JSONObject support;
+			JSONArray forecastsArray = getJSONArray("main");
+			JSONObject support= null;
 			int pressure;
 			String data;
 			
-			for (int i = 0; i<forecastsArray.length(); i++) {
+			for (int i = 0; i<forecastsArray.size(); i++) {
 				
-				support = forecastsArray.getJSONObject(i);
+			
+				String s = JSONObject.toJSONString(support);
+				//support = forecastsArray.getJSONObject(i);
 				pressure = (int) support.get("pressurre");
 				data = (String) support.get("dt_txt");
 				JSONObject toReturn = new JSONObject();
 				toReturn.put("Pressure", pressure);
 				toReturn.put("Data", data);
-			//	toGive.put(toReturn);
-				
-				
+				toGive.add(toReturn);
 			}
+			return toGive;
+			
+				
+		}
 			 
 	
 			/**
@@ -110,26 +102,34 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 				JSONObject object = getCityW(name);
 				JSONArray toGive = new JSONArray();
 					
-					JSONArray forecastsArray = getJSONArray("list");
-					JSONObject support;
+					JSONArray forecastsArray = getJSONArray("main");
+					JSONObject support = null;
 					int humidity;
 					String data;
 					
-					for (int i = 0; i<forecastsArray.length(); i++) {
+					for (int i = 0; i<forecastsArray.size(); i++) {
 						
-						support = forecastsArray.getJSONObject(i);
+						String s = JSONObject.toJSONString(support);
+					//	support = JSONObject.toJSONString(i);
 						humidity = (int) support.get("humidity");
 						data = (String) support.get("dt_txt");
 						JSONObject toReturn = new JSONObject();
 						toReturn.put("Humidity", humidity);
 						toReturn.put("Data", data);
-						toGive.put(toReturn);
+						toGive.add(toReturn);
 						
 					}
+					return toGive;
 		
-		return toGive;
+	
 		
 	}
+	private JSONArray getJSONArray(String string) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+
 	/**
 	 * Questo metodo utilizza getCityW per  selezionare le previsioni meteo ristrette (temperatura
 	 * massima, minima, percepita ).
@@ -146,16 +146,16 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 		
 		
 		
-		JSONArray forecastsArray = object.getJSONArray("main");
+		JSONArray forecastsArray = getJSONArray("main");
 		JSONObject counter;
 		
-		Vector<forecasts> vector = new Vector<forecasts>(forecastsArray.length());
+		Vector<forecasts> vector = new Vector<forecasts>(forecastsArray.size());
 		
 		
 		try {
 			
 			
-			for (int i = 0; i<forecastsArray.length(); i++) {
+			for (int i = 0; i<forecastsArray.size(); i++) {
 				
 				forecasts weather = new forecasts();
 				counter = ( forecastsArray).getJSONObject(i);				
@@ -292,7 +292,7 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 	 * @throws EmptyString se almeno uno dei nomi inseriti è uguale alla stringa vuota.
 	 * @throws ExceptionCity se l'utente ha inserito una città di cui non è presente lo storico. Le stringhe ammesse
 	 *         sono: "chieuti","tortoreto","capri","civitella del tronto","sant'egidio alla vibrata".
-	 * @throws WrongPeriod se l'utente ha inserito un numero che non è compreso tra 1 e 5 (inclusi).
+	 * @throws WrongPeriod se l'utente ha inserito un numero che non è compreso tra 1 e 7 (inclusi).
 	 * @throws WrongValue se l'utente ha inserito una stringa non ammessa per il value.
 	 * @throws IOException se si verificano problemi nella lettura del file.
 	 */
@@ -327,7 +327,7 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 					arr = ( forecasts).getJSONArray("forecasts");
 					
 					
-					for(int j=0; j<arr.length();j++) {
+					for(int j=0; j<arr.size();j++) {
 						
 						JSONObject all = new JSONObject();
 						all = arr.getJSONObject(j);
