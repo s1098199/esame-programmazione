@@ -9,7 +9,7 @@ import java.util.Vector;
 		private String name;
 		private String Nation;
 		private long id;
-		private Coordinates coordinates;
+		
 		private Vector<forecasts> vector = new Vector<forecasts>();	
 		
 		public City() {
@@ -23,7 +23,7 @@ import java.util.Vector;
 		public City(long id) {
 			this.id=id;
 			this.name=null;
-			this.coordinates=null;
+			
 			this.Nation=null;
 		}
 		/** Costruttore del nome della città
@@ -32,19 +32,11 @@ import java.util.Vector;
 		public City(String name) {
 			this.id=0;
 			this.name=name;
-			this.coordinates=null;
+			
 			this.Nation=null;
 		}
 		
-		/**Costruttore delle  coordinate della città	
-		 * @param coordinates coordinate della città
-		 */
-		public City(Coordinates coordinates) {
-			this.id=0;
-			this.name=null;
-			this.coordinates=coordinates;
-			this.Nation=null;		
-		}
+
 		
 		/**Costruttore	
 		 * @param name     nome della città
@@ -53,7 +45,7 @@ import java.util.Vector;
 		public City(String name, String Nation) {
 			this.id=0;
 			this.name=name;
-			this.coordinates=null;
+			
 			this.Nation=Nation;
 		}
 		
@@ -66,11 +58,11 @@ import java.util.Vector;
 		*/
 	
 	
-	public City(long id, String name, Coordinates coordinates, String Nation, double 
+	public City(long id, String name,  String Nation, double 
 			pressure, float humidity, int feels_like) {
 		this.id = id;
 		this.name = name;
-		this.coordinates = coordinates;
+		
 		this.Nation = Nation;
 			// TODO Auto-generated constructor stub
 		}
@@ -120,21 +112,8 @@ import java.util.Vector;
 		 public long getId() {
 		 return id;
 		}
-		 /**
-		  * Metodo che restituisce le Coordinate
-		  * @return coordinates
-		  */
-		public Coordinates getCoordinates() {
-			return coordinates;
-		}
-		
-		/**
-		 * Metodo che setta le Coordinate
-		 * @param coordinates
-		 */
-		public void setCoordinates(Coordinates coordinates) {
-			this.coordinates = coordinates;
-		}
+		 
+
 		
 		/**
 		 * Metodo che restituisce il vettore delle previsioni della città
@@ -159,7 +138,7 @@ import java.util.Vector;
 		
 		@Override
 		public String toString() {
-		 return "id=" + id + ", name=" + name + ", coordinates=" + coordinates + ", Nation=" + Nation
+		 return "id=" + id + "name=" + name + " Nation=" + Nation
 					+ ", forecastsArray=" + toString() + ""; 
 		}
 				

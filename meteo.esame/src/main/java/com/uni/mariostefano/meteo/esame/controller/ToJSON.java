@@ -38,10 +38,7 @@ package com.uni.mariostefano.meteo.esame.controller;
 			object.put("name", city.getName());
 			object.put("Nation", city.getNation());
 			object.put("id", city.getId());
-			JSONObject coordinates = new JSONObject();
-			coordinates.put("latitude", (city.getCoordinates()).getLatitude());
-			coordinates.put("longitude", (city.getCoordinates()).getLongitude());
-			object.put("coordinates", coordinates);
+
 			
 			
 			JSONArray arr = new JSONArray();

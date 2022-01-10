@@ -13,11 +13,11 @@ public class forecasts{
 		//private double temp_max;
 		//private double temp_min;
 		
-		/*
+		
 		//costruttore
 		
 		public forecasts() {
-			this.feels_like = 0;
+			//this.feels_like = 0;
 			this.data = null;
 		}
 		
@@ -56,8 +56,7 @@ public class forecasts{
 	     * @param temp_max                    Informazioni sulla temperatura massima
 	     * @param temp_min                    Infomrazioni sulla temperatura minima
 	     */
-		public forecasts (double feels_like, double pressure, double humidity, String data,
-				double temp_max,double temp_min) {
+		public forecasts ( double pressure, double humidity, String data) {
 			super();
 			//this.feels_like = feels_like;
 			this.pressure = pressure;			
