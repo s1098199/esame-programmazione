@@ -9,7 +9,7 @@ public class forecasts{
 		private double pressure;
 		private double humidity;
 		private String data;
-		private double temperature;
+		private double temp;
 		//private double temp_max;
 		//private double temp_min;
 		
@@ -56,13 +56,13 @@ public class forecasts{
 	     * @param temp_max                    Informazioni sulla temperatura massima
 	     * @param temp_min                    Infomrazioni sulla temperatura minima
 	     */
-		public forecasts ( double pressure, double humidity, String data) {
+		public forecasts ( double pressure, double humidity, String data, double temp) {
 			super();
 			//this.feels_like = feels_like;
 			this.pressure = pressure;			
 			this.humidity = humidity;
 			this.data = data;
-			//this.temp_max = temp_max;
+			this.temp = temp;
 			//this.temp_min = temp_min;
 			
 		}
@@ -71,8 +71,8 @@ public class forecasts{
 		 * Metodo che restituisce la temperatura attuale
 		 * @return
 		 */
-		public double getTemperature() {
-			return temperature;
+		public double getTemp() {
+			return temp;
 		}
 		
 		/**
@@ -80,8 +80,8 @@ public class forecasts{
 		 * @param temperature
 		 */
 
-		public void setTemperature(double temperature) {
-			this.temperature = temperature;
+		public void setTemp(double temp) {
+			this.temp = temp;
 		}
 
 		/**
@@ -198,7 +198,7 @@ public class forecasts{
 		@Override
 		public String toString() {
 			return  "  pressure=" + pressure + "data=" + data +", humidity="
-					+ humidity ;
+					+ humidity + ",temp=" + temp ;
 		}
 
 

@@ -81,25 +81,27 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 			
 			JSONArray forecastsArray = getJSONArray("list");
 		LinkedHashMap weather=new LinkedHashMap<>();
-		//main=(LinkedHashMap) object.get("main");
-		//JSONObject obj2=new JSONObject();
-			
+		
 			JSONObject support= null;
-			int pressure;
-			int humidity;
+			double pressure;
+			double humidity;
+			double temp;
+			
 			String data;
 			
 			for (int i = 0; i<forecastsArray.size(); i++) {
 				
 			
-				//String s = JSONObject.toJSONString(support);
+			
 				support =(JSONObject) forecastsArray.get(i);
 				weather=(LinkedHashMap) support.get("main");
 				pressure = (int) weather.get("pressure");
 				humidity=(int) weather.get("humidity");
+				temp=(int) weather.get("temp");
 				data = (String) support.get("dt_txt");
 				JSONObject toReturn = new JSONObject();
-				toReturn.put("Pressure", pressure);//SchedulerExecutor
+				toReturn.put("Pressure", pressure);
+				toReturn.put("temp", temp);
 				toReturn.put("Humidity", humidity);
 				toReturn.put("Data", data);
 				toGive.add(toReturn);
@@ -110,39 +112,7 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 		}
 			 
 	
-			/**
-			 * Questo metodo utilizza getCityW per  prendere le previsioni sulla umidità della città richiesta.
-			 * @param  il nome della città che si vuole conoscere l' umidità.
-			 * @return restituisce il JSONArray contente l' umidità con la relativa data e ora.
-			 
-
-			public JSONArray getHumidityfromApi(String name) {
-				
-				JSONObject object = getCityW(name);
-				JSONArray toGive = new JSONArray();
-					
-					JSONArray forecastsArray = getJSONArray("list");
-					JSONObject support = null;
-					int humidity;
-					String data;
-					
-					for (int i = 0; i<forecastsArray.size(); i++) {
-						
-						//String s = JSONObject.toJSONString(support);
-					support =(JSONObject) object.get("main");
-						humidity = (int) support.get("humidity");
-						data = (String) support.get("dt_txt");
-						JSONObject toReturn = new JSONObject();
-						toReturn.put("Humidity", humidity);
-						toReturn.put("Data", data);
-						toGive.add(toReturn);
-						
-					}
-					return toGive;
-		
-	
-		
-	}*/
+			
 	private JSONArray getJSONArray(String string) {
 				// TODO Auto-generated method stub
 				return null;
@@ -178,16 +148,11 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 				forecasts weather = new forecasts();
 				counter = (JSONObject) forecastsArray.get(i);				
 				weather.setData(counter.get("dt_txt").toString());
-				//JSONArray arrayW =(JSONA counter.get("weather");
-				//JSONObject objectW = arrayW.getJSONObject(0);
-				//JSONObject objectW2 = counter.getJSONObject("");
-				//forecasts.setTemp_max(objectW2.getDouble("temp_max"));
-				//forecasts.setTemp_min(objectW2.getDouble("temp_min"));
-				//forecasts.setfeels_like(objectW2.getdouble("feels_like"));
 				LinkedHashMap main=new LinkedHashMap<>();
 				main=(LinkedHashMap) counter.get("main");
 				weather.setpressure((double) main.get("pressure"));
 				weather.sethumidity( (double) main.get("humidity"));
+				weather.setTemp( (double) main.get("temp"));
 				vector.add(weather); 
 		
 			}
@@ -221,11 +186,15 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 		
 		String path = "";
 		
-		if(flag) 
-			
-		
-	 path = System.getProperty("user.dir") + "/pressure/" + name +".txt";
-		else path = System.getProperty("user.dir") + "/humidity/" + name +".txt";
+		if(flag) {
+			path = System.getProperty("user.dir") + "/pressure/" + name +".txt"
+					;}
+		else { 
+			path = System.getProperty("user.dir") + "/humidity/" + name +".txt";
+			}
+		 /*{
+			path = System.getProperty("user.dir") + "/temp/" + name +".txt";
+			}*/
 		
 		String everything;
 			
@@ -252,50 +221,6 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 			
 	}
 	
-	/**
-	 * Questo metodo viene richiamato da readHistoryError e da readHumidityHistory.
-	 * Si occupa della lettura dello storico della città passata in ingresso. A seconda che il flag sia true o false, il 
-	 * metodo andrà a leggere lo storico  
-	 * 
-	 * @param name è il nome della città di cui si vuole leggere lo storico.
-	 * @param flag indica quale storico andare a leggere.
-	 * @return il JSONArray che contiene tutte le informazioni sulla umidità.
-	 * @throws IOException se si verificano errori di input da file.
-	 
-	
-	public JSONArray readHistory2(String name, boolean flag) throws IOException {
-		
-		String path = "";
-		
-		if(flag) {
-			path = System.getProperty("user.dir") + "/error/" + name +".txt";
-		}
-		else path = System.getProperty("user.dir") + "/humidity/" + name +".txt";
-		
-		String everything;
-			
-		BufferedReader br = new BufferedReader(new FileReader(path));
-		
-			try {
-			    StringBuilder sb = new StringBuilder();
-			    String line = br.readLine();
-
-			    while (line != null) {
-			        sb.append(line);
-			        sb.append(System.lineSeparator());
-			        line = br.readLine();
-			    }
-			    everything = sb.toString();
-			} finally {
-			    br.close();
-			}
-				
-		
-			JSONArray array = new JSONArray();
-	
-			return array;
-			
-	}*/
 public String save(String cityName) throws IOException {
         
 		City city = getCityWeatherRistrictfromApi(cityName);        
@@ -342,11 +267,21 @@ public String saveEveryHour(String cityName) {
 	    @Override
 	    public void run() {
 	    	
-	    	/*JSONArray visibility = new JSONArray();
-	    	visibility = getVisibilityfromApi(cityName);
+	    	JSONArray pressure = new JSONArray();
+	    	JSONArray humidity = new JSONArray();
+	    	JSONArray temp = new JSONArray();
+	    	pressure = getfromApi(cityName);
+	    	humidity = getfromApi(cityName);
+	    	temp = getfromApi(cityName);
 	    	
-	    	JSONObject actualvisibility = new JSONObject();
-	    	actualvisibility = visibility.getJSONObject(0);
+	    	JSONObject Pressure = new JSONObject();
+	    	Pressure = (JSONObject)Pressure.get(0);
+	    	
+	    	JSONObject Humidity = new JSONObject();
+	    	Humidity = (JSONObject)Humidity.get(0);
+	    	
+	    	JSONObject Temp = new JSONObject();
+	    	Temp = (JSONObject)temp.get(0);
 
 	    			try{
 	    			    if(!file.exists()) {
@@ -356,14 +291,16 @@ public String saveEveryHour(String cityName) {
 	    			    FileWriter fileWriter = new FileWriter(file, true);
 	    				
 	    				BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-	    			    bufferedWriter.write(actualvisibility.toString());
+	    			    bufferedWriter.write(Pressure.toString());
+	    			    bufferedWriter.write(Humidity.toString());
+	    			    bufferedWriter.write(temp.toString());
 	    			    bufferedWriter.write("\n");
 	    			    
 	    			    bufferedWriter.close();
 	    			    
 	    			} catch(IOException e) {
 	    			    System.out.println(e);
-	    			}*/
+	    			}
 	    	try {
 				save(cityName);
 			} catch (IOException e) {
@@ -418,6 +355,7 @@ public String saveEveryHour(String cityName) {
 			ArrayList<ArrayList> All= new ArrayList<ArrayList>();
 			ArrayList<JSONArray> PressureArray = new ArrayList<JSONArray>();
 			ArrayList<JSONArray> HumidityArray = new ArrayList<JSONArray>();
+			ArrayList<JSONArray> TempArray = new ArrayList<JSONArray>();
 			//return null;
 while(it.hasNext()) {
 				
@@ -425,11 +363,13 @@ while(it.hasNext()) {
 				array = readHistory(it.next(),true);
 				JSONArray pressureinfo = new JSONArray();
 				JSONArray humidityinfo = new JSONArray();
+				JSONArray Tempinfo = new JSONArray();
 				
 				for(int i=0; i<array.size(); i++) {
 					
 					JSONArray pressureday = new JSONArray();
 					JSONArray humidityday = new JSONArray();
+					JSONArray tempday = new JSONArray();
 					
 					JSONObject weather = new JSONObject();
 					weather = (JSONObject)array.get(i);
@@ -442,33 +382,40 @@ while(it.hasNext()) {
 						
 						JSONObject pressure = new JSONObject();
 						JSONObject humidity = new JSONObject();
+						JSONObject temp = new JSONObject();
 						JSONObject all = new JSONObject();
 						all = (JSONObject)arr.get(j);
 						
 						
 						pressure.put("pressure", all.get("pressure"));
 						humidity.put("humidity", all.get("humidity"));
+						temp.put("humidity", all.get("temp"));
 						pressure.put("data", all.get("data"));
 						humidity.put("data", all.get("data"));
+						temp.put("data", all.get("data"));
 
 						pressureday.add(pressure);
 						humidityday.add(humidity);
+						tempday.add(temp);
 						
 					
 					}
 					
 					pressureinfo.add(pressureday);
 					humidityinfo.add(humidityday);
+					pressureinfo.add(tempday);
 					
 					
 				}
 				
 				PressureArray.add(pressureinfo);
 				HumidityArray.add(humidityinfo);
+				TempArray.add(Tempinfo);
 				
 			}
 All.add(PressureArray);
 All.add(HumidityArray);
+All.add(TempArray);
 return All;
 			
 					/*JSONObject forecasts = new JSONObject();

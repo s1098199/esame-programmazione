@@ -48,7 +48,7 @@ package com.uni.mariostefano.meteo.esame.controller;
 				JSONObject forecasts = new JSONObject();
 				forecasts.put("data", (city.getVector()).get(i).getData());
 				forecasts.put("humidity", (city.getVector()).get(i).gethumidity());
-				//forecasts.put("temp_max", (city.getVector()).get(i).getTemp_max());
+				forecasts.put("temp", (city.getVector()).get(i).getTemp());
 				//forecasts.put("temp_min",(city.getVector()).get(i).getTemp_min());
 				forecasts.put("pressure", (city.getVector()).get(i).getpressure());
     			//arr.put("forecasts",forecasts);

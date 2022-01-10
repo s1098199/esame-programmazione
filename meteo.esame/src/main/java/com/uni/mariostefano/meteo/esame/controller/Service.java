@@ -27,8 +27,7 @@ public interface Service {
 	public abstract String save(String city) throws IOException;
 	public String saveEveryHour(String cityName);
 	public abstract ArrayList<ArrayList> readHistoryError(ArrayList<String> cities,int error,String value,int period) throws EmptyString , ExceptionCity , WrongPeriod , WrongValue ,  IOException;
-	//public abstract ArrayList<JSONArray> readHumidityHistory(ArrayList<String> cities,String period) throws EmptyString , ExceptionCity , WrongPeriod , WrongValue ,  IOException;
-	//public abstract ArrayList<JSONArray> readPressureHistory(ArrayList<String> cities,String period) throws EmptyString , ExceptionCity , WrongPeriod , WrongValue ,  IOException;
+	
 
 }
 	
