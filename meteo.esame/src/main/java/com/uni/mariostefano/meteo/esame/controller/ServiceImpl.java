@@ -153,6 +153,9 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 				weather.setpressure((double) main.get("pressure"));
 				weather.sethumidity( (double) main.get("humidity"));
 				weather.setTemp( (double) main.get("temp"));
+				weather.setTemp_max( (double) main.get("temp_max"));
+				weather.setTemp_min( (double) main.get("temp_min"));
+				weather.setfeels_like( (double) main.get("feels_like"));
 				vector.add(weather); 
 		
 			}
@@ -189,12 +192,12 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 		if(flag) {
 			path = System.getProperty("user.dir") + "/pressure/" + name +".txt"
 					;}
-		else { 
+		else if (flag){ 
 			path = System.getProperty("user.dir") + "/humidity/" + name +".txt";
 			}
-		 /*{
+		else if (flag) {
 			path = System.getProperty("user.dir") + "/temp/" + name +".txt";
-			}*/
+			}
 		
 		String everything;
 			

@@ -5,19 +5,19 @@ package com.uni.mariostefano.meteo.esame.model;
 	 */
 	
 public class forecasts{
-		//private double feels_like;
+		private double feels_like;
 		private double pressure;
 		private double humidity;
 		private String data;
 		private double temp;
-		//private double temp_max;
-		//private double temp_min;
+		private double temp_max;
+		private double temp_min;
 		
 		
 		//costruttore
 		
 		public forecasts() {
-			//this.feels_like = 0;
+			this.feels_like = 0;
 			this.data = null;
 		}
 		
@@ -25,7 +25,7 @@ public class forecasts{
 		 * @param feels_like       Informazioni riguardante la temperature percepita
 		 * @param pressure                  Informazioni sulla pressione
 		 */
-		/*
+		
 		public forecasts (double feels_like, double pressure) {
 			super();
 			this.feels_like = feels_like;
@@ -38,7 +38,7 @@ public class forecasts{
 	     * @param pressure                Informazioni sulla pressione
 	     * @param humidity                Infomrazioni sull'umidità
 	     */
-		/*
+		
 		public forecasts (double feels_like, double pressure, double humidity) {
 			super();
 			this.feels_like = feels_like;
@@ -58,12 +58,12 @@ public class forecasts{
 	     */
 		public forecasts ( double pressure, double humidity, String data, double temp) {
 			super();
-			//this.feels_like = feels_like;
+			this.feels_like = feels_like;
 			this.pressure = pressure;			
 			this.humidity = humidity;
 			this.data = data;
 			this.temp = temp;
-			//this.temp_min = temp_min;
+			this.temp_min = temp_min;
 			
 		}
 		
@@ -88,7 +88,7 @@ public class forecasts{
 		 * Metodo che restituisce la temperatura massima
 		 * @return temp_max
 		 */
-		/*public Double getTemp_max() {
+		public Double getTemp_max() {
 			return temp_max;
 		}
 		
@@ -97,7 +97,7 @@ public class forecasts{
 		 * @param temp_max
 		 */
 
-		/*public void setTemp_max(double temp_max) {
+		public void setTemp_max(double temp_max) {
 			this.temp_max = temp_max;
 		}
 		
@@ -106,7 +106,7 @@ public class forecasts{
 		 * @return temp_min
 		 */
 
-		/*public double getTemp_min() {
+		public double getTemp_min() {
 			return temp_min;
 		}
 		
@@ -115,7 +115,7 @@ public class forecasts{
 		 * @param temp_min
 		 */
 
-		/*public void setTemp_min(double temp_min) {
+		public void setTemp_min(double temp_min) {
 			this.temp_min = temp_min;
 		}
 
@@ -124,7 +124,7 @@ public class forecasts{
 		 * @return feels_like
 		 */
 
-		/*public double feels_like() {
+		public double feels_like() {
 			return feels_like;
 		}
 		
@@ -133,7 +133,7 @@ public class forecasts{
 		 * @param  double feels_like
 		 */
 
-		/*public void setfeels_like(double feels_like) {
+		public void setfeels_like(double feels_like) {
 			this.feels_like = feels_like;
 		}
 		
@@ -198,7 +198,7 @@ public class forecasts{
 		@Override
 		public String toString() {
 			return  "  pressure=" + pressure + "data=" + data +", humidity="
-					+ humidity + ",temp=" + temp ;
+					+ humidity + ",temp=" + temp + "temp_max="+ temp_max + "temp_min="+ temp_min + "feels_like=" + feels_like ;
 		}
 
 

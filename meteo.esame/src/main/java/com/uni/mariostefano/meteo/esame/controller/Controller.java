@@ -36,7 +36,7 @@ public class Controller {
 
 
 @GetMapping (value="/General")
-public ResponseEntity<Object> getpressure (@RequestParam String cityName) {
+public ResponseEntity<Object> getfromApi (@RequestParam String cityName) {
 	return new ResponseEntity<> (si.getfromApi(cityName).toString(), HttpStatus.OK);
 }
 
