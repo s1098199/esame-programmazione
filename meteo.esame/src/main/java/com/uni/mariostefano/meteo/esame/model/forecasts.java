@@ -6,7 +6,7 @@ package com.uni.mariostefano.meteo.esame.model;
 	
 public class forecasts{
 		private double feels_like;
-		private double pressure;
+		private int pressure;
 		private double humidity;
 		private String data;
 		private double temp;
@@ -26,7 +26,7 @@ public class forecasts{
 		 * @param pressure                  Informazioni sulla pressione
 		 */
 		
-		public forecasts (double feels_like, double pressure) {
+		public forecasts (double feels_like, int pressure) {
 			super();
 			this.feels_like = feels_like;
 			this.pressure = pressure;
@@ -39,7 +39,7 @@ public class forecasts{
 	     * @param humidity                Infomrazioni sull'umidità
 	     */
 		
-		public forecasts (double feels_like, double pressure, double humidity) {
+		public forecasts (double feels_like, int pressure, double humidity) {
 			super();
 			this.feels_like = feels_like;
 			this.pressure = pressure;
@@ -56,7 +56,7 @@ public class forecasts{
 	     * @param temp_max                    Informazioni sulla temperatura massima
 	     * @param temp_min                    Infomrazioni sulla temperatura minima
 	     */
-		public forecasts ( double pressure, double humidity, String data, double temp) {
+		public forecasts ( int pressure, double humidity, String data, double temp) {
 			super();
 			this.feels_like = feels_like;
 			this.pressure = pressure;			
@@ -142,7 +142,7 @@ public class forecasts{
 		 * @return pressure
 		 */
 
-		public double getpressure() {
+		public int getpressure() {
 			return pressure;
 		}
 		
@@ -150,7 +150,7 @@ public class forecasts{
 		 * Metodo che setta le informazioni riguardanti la pressione
 		 * @param  double pressure
 		 */
-		public void setpressure(double pressure) {
+		public void setpressure(int pressure) {
 			this.pressure = pressure;
 		}
 		
@@ -195,7 +195,6 @@ public class forecasts{
 		 * Override del metodo toString.
 		 * @return String che rappresenta il meteo.
 		 */
-		@Override
 		public String toString() {
 			return  "  pressure=" + pressure + "data=" + data +", humidity="
 					+ humidity + ",temp=" + temp + "temp_max="+ temp_max + "temp_min="+ temp_min + "feels_like=" + feels_like ;

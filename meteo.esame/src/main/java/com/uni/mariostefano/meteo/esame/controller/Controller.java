@@ -1,6 +1,7 @@
 package com.uni.mariostefano.meteo.esame.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 //import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.uni.mariostefano.meteo.esame.exception.EmptyString;
+import com.uni.mariostefano.meteo.esame.exception.ExceptionCity;
+import com.uni.mariostefano.meteo.esame.exception.WrongPeriod;
+import com.uni.mariostefano.meteo.esame.exception.WrongValue;
 
 //import java.util.ArrayList;
 //import org.json.JSONArray;
@@ -37,7 +43,7 @@ public class Controller {
 
 @GetMapping (value="/General")
 public ResponseEntity<Object> getfromApi (@RequestParam String cityName) {
-	return new ResponseEntity<> (si.getfromApi(cityName).toString(), HttpStatus.OK);
+	return new ResponseEntity<> (si.getCityWeatherRistrictfromApi(cityName).toString(), HttpStatus.OK);
 }
 
 
@@ -49,11 +55,16 @@ public ResponseEntity<Object> getfromApi (@RequestParam String cityName) {
  * @throws IOException se si verificano errori di output su file.
  */
 
-@GetMapping(value="/saveEveryHour")
-public ResponseEntity<Object> saveHour(@RequestParam String cityName) throws IOException {
+@GetMapping(value="/readHistoryError")
+public ResponseEntity<Object> readHistoryError(@RequestParam String cityName) throws IOException {
 	
-	String path = si.saveEveryHour(cityName);
+	//String path = si.saveEveryHour(cityName);
 	
-	return new ResponseEntity<> (path, HttpStatus.OK);
+	try {
+		return new ResponseEntity<> (si.readHistory(cityName), HttpStatus.OK);
+	} catch (/*EmptyString | ExceptionCity | WrongPeriod | WrongValue |*/ IOException e) {
+		// TODO Auto-generated catch block
+		return new ResponseEntity<>(e, HttpStatus.BAD_REQUEST);
+	}
 }
 }

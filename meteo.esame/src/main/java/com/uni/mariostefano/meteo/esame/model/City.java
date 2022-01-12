@@ -131,15 +131,58 @@ import java.util.Vector;
 			this.vector = vector;
 		}
 		
-		/**
-		 * Override del metodo toString
+		
+		/** Metodo che scrive il vettore come una stringa.
+	     * @return String toReturn che rappresenta le previsioni meteo.
+	     */
+		public String toStringVector() {
+			String toReturn="";
+			for (int i=0; i<vector.size(); i++)
+				toReturn += vector.get(i).toString();
+			return toReturn;
+		}
+
+		/* * Override del metodo toString
 		 * @return String che rappresenta la città
 		 */
 		
 		@Override
 		public String toString() {
 		 return "id=" + id + "name=" + name + " Nation=" + Nation
-					+ ", forecastsArray=" + toString() + ""; 
+					+ ", forecastsArray=" + toStringVector(); 
 		}
+
+		/**
+		 * Override del metodo equals.
+		 * @param oggetto City da confrontare.
+		 * @return true o false a seconda che i due oggetti siano uguali.
+		 */
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			City other = (City) obj;
+			
+			if (Nation == null) {
+				if (other.Nation != null)
+					return false;
+			} else if (!Nation.equals(other.Nation))
+				return false;
+			if (id != other.id)
+				return false;
+			if (name == null) {
+				if (other.name != null)
+					return false;
+			} else if (!name.equals(other.name))
+				return false;
+			return true;
+		}
+
+		
+		
 				
 }

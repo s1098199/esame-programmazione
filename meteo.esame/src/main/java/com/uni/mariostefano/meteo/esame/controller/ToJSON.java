@@ -51,7 +51,7 @@ package com.uni.mariostefano.meteo.esame.controller;
 				forecasts.put("temp", (city.getVector()).get(i).getTemp());
 				//forecasts.put("temp_min",(city.getVector()).get(i).getTemp_min());
 				forecasts.put("pressure", (city.getVector()).get(i).getpressure());
-    			//arr.put("forecasts",forecasts);
+    			arr.add(i, forecasts);
 			}
 			
 			

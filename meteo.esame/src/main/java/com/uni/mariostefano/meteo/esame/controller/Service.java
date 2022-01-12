@@ -26,7 +26,7 @@ public interface Service {
 	public abstract City getCityWeatherRistrictfromApi(String city);
 	public abstract String save(String city) throws IOException;
 	public String saveEveryHour(String cityName);
-	public abstract ArrayList<ArrayList> readHistoryError(ArrayList<String> cities,int error,String value,int period) throws EmptyString , ExceptionCity , WrongPeriod , WrongValue ,  IOException;
+	//public abstract ArrayList<ArrayList> readHistoryError(ArrayList<String> cities,int error,String value,int period) throws EmptyString , ExceptionCity , WrongPeriod , WrongValue ,  IOException;
 	
 
 }
