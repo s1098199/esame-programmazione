@@ -9,6 +9,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,6 +24,8 @@ import java.util.Vector;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -153,9 +159,9 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 				main=(LinkedHashMap) counter.get("main");
 				weather.setpressure((int) main.get("pressure"));
 				weather.sethumidity( (int) main.get("humidity"));
-				weather.setTemp( (double) main.get("temp"));
-				weather.setTemp_max( (double) main.get("temp_max"));
-				weather.setTemp_min( (double) main.get("temp_min"));
+				//weather.setTemp((int) main.get("temp"));
+				//weather.setTemp_max( (double) main.get("temp_max"));
+				//weather.setTemp_min( (double) main.get("temp_min"));
 				weather.setfeels_like( (double) main.get("feels_like"));
 				vector.add(weather); 
 		
@@ -186,14 +192,18 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 	 * @throws IOException se si verificano errori di input da file.
 	 */
 	
-	public JSONArray readHistory(String name ) throws IOException {
+	public JSONArray readHistory(String cityName, boolean flag ) throws IOException {
 		
 		String path = "";
 		
 		    
-		    	path = System.getProperty("user.dir") +"\\"+ name + ".txt";
-		    	
-		        
+		    	path = System.getProperty("user.dir") +"\\"+ cityName + ".txt";
+/*String path = "";
+		
+		if(flag) {
+			path = System.getProperty("user.dir") + "/error/" + name +".txt";
+		}
+		else path = System.getProperty("user.dir") + "/Capri/" + name +"HourlyReport.txt";	        
 		  /*else if (flag){ 
 	 	path = System.getProperty("user.dir") + "\\humidity\\" + name +".txt";
 			}
@@ -240,7 +250,7 @@ public String save(String cityName) throws IOException {
 	String today = date.format(new Date());
 
 
-	String nameFile=cityName+"_"+today+".txt";
+	String nameFile=cityName +".txt";
 	String path=System.getProperty("user.dir")+nameFile;
 	City city = getCityWeatherRistrictfromApi(cityName);        
     
@@ -286,10 +296,10 @@ public String save(String cityName) throws IOException {
 
 public String saveEveryHour(String cityName) {
 	
-	String path = System.getProperty("user.dir") + "\\" + cityName + "HourlyReport.txt";
+	String path = System.getProperty("user.dir") + "\\" + cityName ;
 	SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 	String today = date.format(new Date());
-	File file = new File(cityName+"_"+today);
+	File file = new File(cityName );
 	
 	ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 	scheduler.scheduleAtFixedRate(new Runnable() {
@@ -315,12 +325,7 @@ public String saveEveryHour(String cityName) {
 	 * Questo metodo serve per raccogliere le informazioni dallo storico di ogni città passata in ingresso 
 	 * e richiama altri metodi che servono per leggere lo storico stesso e metodi per calcolare statistiche e filtrarle.
 	 * 
-	 * @param cities contiene i nomi di tutte le città su cui si vogliono  applicare i filtri.
-	 * @param error è l'intero che rappresenta la soglia con cui si vuole filtrare.
-	 * @param value esprime il filtro che si vuole applicare, cioè se si vuole sapere quali città hanno un errore maggiore
-	 *        o minore dell'intero error che è stato inserito. Le stringhe ammesse sono: "$lt", "$gt" e "=".
-	 * @param period rappresenta i giorni di predizione (da 1 a 7 inclusi).
-	 * @return restituisce l'ArrayList di JSONObject filtrati secondo i filtri indicati.
+.
 	 * @throws EmptyString se almeno uno dei nomi inseriti è uguale alla stringa vuota.
 	 * @throws ExceptionCity se l'utente ha inserito una città di cui non è presente lo storico. Le stringhe ammesse
 	 *         sono: "chieuti","tortoreto","capri","civitella del tronto","sant'egidio alla vibrata".
@@ -328,37 +333,25 @@ public String saveEveryHour(String cityName) {
 	 * @throws WrongValue se l'utente ha inserito una stringa non ammessa per il value.
 	 * @throws IOException se si verificano problemi nella lettura del file.
 	 */
-	public ArrayList<ArrayList> readHistoryError() 
+	public ArrayList<ArrayList> readHistoryError(String cityName) 
 			throws EmptyString , ExceptionCity , WrongPeriod , WrongValue ,  IOException {
 			
-		/*for(int i=0; i<cities.size(); i++) {
-				if(cities.get(i).isEmpty())
-					throw new EmptyString("Hai dimenticato di inserire la città...");
-				else if(!(cities.get(i).equals("Capri") || cities.get(i).equals("Chieuti") || cities.get(i).equals("Civitella del tronco") || cities.get(i).equals("Tortoreto") || cities.get(i).equals("Sant'egidio alla vibrata")))
-					throw new ExceptionCity ("Città non trovata nello storico");
-			}
-		
-			if(period<1 || period>7)
-				throw new WrongPeriod(period + " non è un numero ammesso. Devi inserire un numero compreso tra "
-						+ "1 e 7 inclusi.");
-			
-			if(!(value.equals("$gt") || value.equals("$lt") || value.equals("=")))
-				throw new WrongValue(value+ " non è una stringa ammessa. "
-						+ "Devi inserire una stringa tra \"$gt\", \"$lt\" e \"=\"");
-		
-			Iterator<String> it = cities.iterator();*/
+	
+		//	Iterator<String> it = cities.iterator();
 			
 			ArrayList<ArrayList> All= new ArrayList<ArrayList>();
 			ArrayList<JSONArray> PressureArray = new ArrayList<JSONArray>();
 			ArrayList<JSONArray> HumidityArray = new ArrayList<JSONArray>();
 			ArrayList<JSONArray> TempArray = new ArrayList<JSONArray>();
 			//return null;
- //while(it.hasNext()) {
+            
+			//while(it.hasNext()) {
 				
 				JSONArray array = new JSONArray();
-				//String ok="\\";
+			
 				
-				array = readHistory("\\Capri_2022-01-11");
+				
+				array = readHistory(cityName, false);
 				//String everything=(String) array.get(0);
 				//everything.split(ok);
 				/*Scanner input=new Scanner(everything);
@@ -377,7 +370,7 @@ public String saveEveryHour(String cityName) {
 				JSONArray humidityinfo = new JSONArray();
 				JSONArray Tempinfo = new JSONArray();
 				
-				//for(int i=0; i<array.size(); i++) {
+				for(int i=0; i<array.size(); i++) {
 					/*
 					 *{ [{
 					 * 			weather:.......
@@ -423,20 +416,18 @@ public String saveEveryHour(String cityName) {
 					pressureinfo.add(tempday);
 					
 					
-				//}
+				}
 				
 				PressureArray.add(pressureinfo);
 				HumidityArray.add(humidityinfo);
 				TempArray.add(Tempinfo);
 				
-		//	}
+	//}
 All.add(PressureArray);
 All.add(HumidityArray);
 All.add(TempArray);
 return All;
-								
-					
-	}
+}
 public City getCityInfofromApi(String name) {
 		
 		JSONObject object = getCityW(name);

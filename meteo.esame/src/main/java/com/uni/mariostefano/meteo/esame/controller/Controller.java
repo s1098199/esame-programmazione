@@ -46,6 +46,20 @@ public ResponseEntity<Object> getfromApi (@RequestParam String cityName) {
 	return new ResponseEntity<> (si.getCityWeatherRistrictfromApi(cityName).toString(), HttpStatus.OK);
 }
 
+@GetMapping (value="/saveEveryHour")
+public ResponseEntity<Object> saveEveryHour (@RequestParam String cityName) {
+	return new ResponseEntity<> (si.saveEveryHour(cityName).toString(), HttpStatus.OK);
+}
+
+@GetMapping (value="/save")
+public ResponseEntity<Object> save (@RequestParam String cityName) throws IOException{
+	return new ResponseEntity<> (si.save(cityName).toString(), HttpStatus.OK);
+}
+
+@GetMapping (value="/readHistory")
+public ResponseEntity<Object> readHistory (@RequestParam String cityName) throws IOException  {
+	return new ResponseEntity<> (si.readHistory(cityName, true), HttpStatus.OK);
+}
 
 /**
  * Rotta di tipo GET che salva ogni ora le previsioni sulla visibilità della città inserita dall'utente.
@@ -61,8 +75,8 @@ public ResponseEntity<Object> readHistoryError(@RequestParam String cityName) th
 	//String path = si.saveEveryHour(cityName);
 	
 	try {
-		return new ResponseEntity<> (si.readHistory(cityName), HttpStatus.OK);
-	} catch (/*EmptyString | ExceptionCity | WrongPeriod | WrongValue |*/ IOException e) {
+		return new ResponseEntity<> (si.readHistoryError( cityName), HttpStatus.OK);
+	} catch (EmptyString | ExceptionCity | WrongPeriod | WrongValue | IOException e) {
 		// TODO Auto-generated catch block
 		return new ResponseEntity<>(e, HttpStatus.BAD_REQUEST);
 	}
