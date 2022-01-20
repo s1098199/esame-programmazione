@@ -1,13 +1,11 @@
 package com.uni.mariostefano.meteo.esame.controller;
 
 
-	import org.json.simple.*;
+
 	import org.json.simple.JSONArray;
 	import org.json.simple.JSONObject;
-	import org.json.simple.parser.JSONParser;
-	import org.json.simple.parser.ParseException;
 	
-	import java.util.*;	
+
 	import com.uni.mariostefano.meteo.esame.model.*;
 
 
@@ -49,7 +47,6 @@ package com.uni.mariostefano.meteo.esame.controller;
 				forecasts.put("data", (city.getVector()).get(i).getData());
 				forecasts.put("humidity", (city.getVector()).get(i).gethumidity());
 				forecasts.put("temp", (city.getVector()).get(i).getTemp());
-				//forecasts.put("temp_min",(city.getVector()).get(i).getTemp_min());
 				forecasts.put("pressure", (city.getVector()).get(i).getpressure());
     			arr.add(i, forecasts);
 			}

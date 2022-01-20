@@ -9,7 +9,7 @@ public class forecasts{
 		private int pressure;
 		private double humidity;
 		private String data;
-		private int Temp;
+		private double Temp;
 		private double temp_max;
 		private double temp_min;
 		
@@ -56,7 +56,7 @@ public class forecasts{
 	     * @param temp_max                    Informazioni sulla temperatura massima
 	     * @param temp_min                    Infomrazioni sulla temperatura minima
 	     */
-		public forecasts ( int pressure, double humidity, String data, int Temp) {
+		public forecasts ( int pressure, double humidity, String data, double Temp) {
 			super();
 			this.feels_like = feels_like;
 			this.pressure = pressure;			
@@ -80,8 +80,8 @@ public class forecasts{
 		 * @param temperature
 		 */
 
-		public void setTemp(int temp) {
-			this.Temp = temp;
+		public void setTemp(double d) {
+			this.Temp = d;
 		}
 
 		/**
@@ -124,7 +124,7 @@ public class forecasts{
 		 * @return feels_like
 		 */
 
-		public double feels_like() {
+		public double getfeels_like() {
 			return feels_like;
 		}
 		

@@ -44,35 +44,35 @@ import com.uni.mariostefano.meteo.esame.exception.ExceptionCity;
 		/**
 		 * Questo Test verifica se viene generata correttamente l'eccezione CityNotFound.
 		 */
-	   /* @Test
+	/*    @Test
 	    @DisplayName("Corretta generazione dell'eccezione ExceptionCity.")
 	    void readHistory1() {
 			
 	    	cities.add("Tortoreto");
 	        cities.add("Capri");
 	    	
-	       ExceptionCity e = assertThrows(ExceptionCity.class, () -> {service.readHistoryError(cities,1,"max",1);});
+	       ExceptionCity e = assertThrows(ExceptionCity.class, () -> {service.readHistory(cities,1,"max",1);});
 	    
 	        assertEquals("Città non trovata nello storico", e.getMex());
 	        
-	    }*/
+	    }
 	    
 	    /**
 		 * Questo Test verifica se viene generata correttamente l'eccezione EmptyString.
 		 */
-	/*	@Test
-	    @DisplayName("Corretta generazione dell'eccezione EmptyStringException.")
+		/*@Test
+	    @DisplayName("Corretta generazione dell'eccezione EmptyString.")
 	    void readHistory2() {
 		
 	    	cities.add("Chieuti");
 	        cities.add("");
 	    	
-	        EmptyString e = assertThrows(EmptyString.class, () -> {service.readHistoryError(cities,1,"max",1);});
+	        EmptyString e = assertThrows(EmptyString.class, () -> {service.readHistory(cities,1,"max",1);});
 	        
 	        assertEquals("Hai dimenticato di inserire la città...", e.getMex());
 	        
-	    }*/
-		
+	    }
+		*/
 		
 	}
 

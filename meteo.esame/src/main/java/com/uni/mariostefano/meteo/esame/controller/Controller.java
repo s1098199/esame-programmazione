@@ -3,32 +3,28 @@ package com.uni.mariostefano.meteo.esame.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
-//import org.json.simple.JSONObject;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ansi.Ansi8BitColor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.RequestBody;
 import com.uni.mariostefano.meteo.esame.exception.EmptyString;
 import com.uni.mariostefano.meteo.esame.exception.ExceptionCity;
 import com.uni.mariostefano.meteo.esame.exception.WrongPeriod;
 import com.uni.mariostefano.meteo.esame.exception.WrongValue;
-
-//import java.util.ArrayList;
-//import org.json.JSONArray;
-
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestBody;
-//import com.uni.mariostefano.meteo.esame.controller.Service;
-
+import com.uni.mariostefano.meteo.esame.filters.*;
 @RestController
 
 public class Controller {
 	
 	@Autowired
 	ServiceImpl si;
+	Statistics statistic;
 	//Service service;
 	//Statistics statistic = new Statistics();
 	
@@ -58,27 +54,10 @@ public ResponseEntity<Object> save (@RequestParam String cityName) throws IOExce
 
 @GetMapping (value="/readHistory")
 public ResponseEntity<Object> readHistory (@RequestParam String cityName) throws IOException  {
-	return new ResponseEntity<> (si.readHistory(cityName, true), HttpStatus.OK);
+	return new ResponseEntity<> (si.readHistory(cityName ), HttpStatus.OK);
 }
-
-/**
- * Rotta di tipo GET che salva ogni ora le previsioni sulla visibilità della città inserita dall'utente.
- * 
- * @param cityName rappresenta la città della quale si richiede di salvare il report.
- * @return il path dove viene salvato il file.
- * @throws IOException se si verificano errori di output su file.
- */
-
-@GetMapping(value="/readHistoryError")
-public ResponseEntity<Object> readHistoryError(@RequestParam String cityName) throws IOException {
-	
-	//String path = si.saveEveryHour(cityName);
-	
-	try {
-		return new ResponseEntity<> (si.readHistoryError( cityName), HttpStatus.OK);
-	} catch (EmptyString | ExceptionCity | WrongPeriod | WrongValue | IOException e) {
-		// TODO Auto-generated catch block
-		return new ResponseEntity<>(e, HttpStatus.BAD_REQUEST);
-	}
+@PostMapping (value="/sevenDay")
+public ResponseEntity<Object> sevenDay (@RequestBody String body) throws WrongValue  {
+	return new ResponseEntity<> (statistic.sevenDayAverage(body) ,  HttpStatus.OK);
 }
 }
