@@ -31,10 +31,10 @@ package com.uni.mariostefano.meteo.esame.filters;
 	        city = service.getCityWeatherRistrictfromApi(name);
 	        
 	        double temp_max_ave = 0;
-	        double temp_min_ave = 0;
-	        double feels_like_ave = 0;
+	        double temp_min_ave = 10000000;
+	        double temp_ave = 0;
 	        
-	        double variance = 0;
+	        //double variance = 0;
 	        
 	        int i=0;
 	        
@@ -43,13 +43,13 @@ package com.uni.mariostefano.meteo.esame.filters;
 	        date += (city.getVector().get(0).getData()).charAt(9);
 	    
 	        String effectiveDate = date;
-	        
 	       
 	        
 	        while(date.equals(effectiveDate)) {
-	            temp_max_ave += city.getVector().get(i).getTemp_max();
-	            temp_min_ave += city.getVector().get(i).getTemp_min();
-	            feels_like_ave += city.getVector().get(i).getfeels_like();	           
+	            temp_ave += city.getVector().get(i).getTemp();
+	           if(city.getVector().get(i).getTemp()<temp_min_ave) temp_min_ave = city.getVector().get(i).getTemp();
+	           if(city.getVector().get(i).getTemp()>temp_max_ave) temp_max_ave = city.getVector().get(i).getTemp();
+	           // feels_like_ave += city.getVector().get(i).getfeels_like();	           
 	            i++;
 	            effectiveDate = "";
 	            effectiveDate += (city.getVector().get(i).getData()).charAt(8);
@@ -57,16 +57,16 @@ package com.uni.mariostefano.meteo.esame.filters;
 	        }
 	        
 	        
-	        temp_max_ave = temp_max_ave/i;
-	        temp_min_ave = temp_min_ave/i;
-	       	feels_like_ave = feels_like_ave/i;
+	        temp_ave = temp_ave/i;
+	       // temp_min_ave = temp_min_ave/i;
+	       //	feels_like_ave = feels_like_ave/i;
 	      
 	        
 	       	effectiveDate = date;
 	        i=0;	        	     
 	    
 	        
-	        variance /= i;
+	     // variance /= i;
 	        
 	        JSONObject object = new JSONObject();
 	      //  JSONObject visibility_data = new JSONObject();
@@ -75,7 +75,7 @@ package com.uni.mariostefano.meteo.esame.filters;
 	        object.put("CityName", name);
 	        object.put("Temp_Max Average", temp_max_ave);
 	        object.put("Temp_Min Average", temp_min_ave);
-	        object.put("Feels_like Average", feels_like_ave);
+	        object.put("Temp Average", temp_ave);
 	    //    object.put("Visibility Data", visibility_data);
 	        
 	        return object;
@@ -98,7 +98,7 @@ package com.uni.mariostefano.meteo.esame.filters;
 	        double temp_min_ave = 0;
 	        double feels_like_ave = 0;
 	       
-	        double variance = 0;
+	      //  double variance = 0;
 	        
 	        int i=0;
 	        
@@ -111,7 +111,7 @@ package com.uni.mariostefano.meteo.esame.filters;
 	        
 	      
 	        
-	        variance /=i;
+	//        variance /=i;
 	        
 	        JSONObject object = new JSONObject();
 	       // JSONObject visibility_data = new JSONObject();

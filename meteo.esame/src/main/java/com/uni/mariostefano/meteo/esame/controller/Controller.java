@@ -24,7 +24,7 @@ public class Controller {
 	
 	@Autowired
 	ServiceImpl si;
-	Statistics statistic;
+	Statistics statistic = new Statistics();
 	//Service service;
 	//Statistics statistic = new Statistics();
 	
@@ -39,7 +39,7 @@ public class Controller {
 
 @GetMapping (value="/General")
 public ResponseEntity<Object> getfromApi (@RequestParam String cityName) {
-	return new ResponseEntity<> (si.getCityWeatherRistrictfromApi(cityName).toString(), HttpStatus.OK);
+	return new ResponseEntity<> (si.getCityWeatherRistrictfromApi(cityName), HttpStatus.OK);
 }
 
 @GetMapping (value="/saveEveryHour")
@@ -56,8 +56,8 @@ public ResponseEntity<Object> save (@RequestParam String cityName) throws IOExce
 public ResponseEntity<Object> readHistory (@RequestParam String cityName) throws IOException  {
 	return new ResponseEntity<> (si.readHistory(cityName ), HttpStatus.OK);
 }
-@PostMapping (value="/sevenDay")
-public ResponseEntity<Object> sevenDay (@RequestBody String body) throws WrongValue  {
-	return new ResponseEntity<> (statistic.sevenDayAverage(body) ,  HttpStatus.OK);
+@GetMapping (value="/sevenDay")
+public ResponseEntity<Object> sevenDay (@RequestParam String cityName) throws WrongValue  {
+	return new ResponseEntity<> (statistic.todayAverage(cityName) ,  HttpStatus.OK);
 }
 }

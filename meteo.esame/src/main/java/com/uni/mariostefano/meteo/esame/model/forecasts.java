@@ -5,19 +5,19 @@ package com.uni.mariostefano.meteo.esame.model;
 	 */
 	
 public class forecasts{
-		private double feels_like;
+	//	private double feels_like;
 		private int pressure;
 		private double humidity;
 		private String data;
 		private double Temp;
-		private double temp_max;
-		private double temp_min;
+		//private double temp_max;
+	//	private double temp_min;
 		
 		
 		//costruttore
 		
 		public forecasts() {
-			this.feels_like = 0;
+		//	this.feels_like = 0;
 			this.data = null;
 		}
 		
@@ -28,7 +28,7 @@ public class forecasts{
 		
 		public forecasts (double feels_like, int pressure) {
 			super();
-			this.feels_like = feels_like;
+		//	this.feels_like = feels_like;
 			this.pressure = pressure;
 		}
 		
@@ -41,7 +41,7 @@ public class forecasts{
 		
 		public forecasts (double feels_like, int pressure, double humidity) {
 			super();
-			this.feels_like = feels_like;
+			//this.feels_like = feels_like;
 			this.pressure = pressure;
 			this.humidity = humidity;
 
@@ -58,12 +58,12 @@ public class forecasts{
 	     */
 		public forecasts ( int pressure, double humidity, String data, double Temp) {
 			super();
-			this.feels_like = feels_like;
+		//	this.feels_like = feels_like;
 			this.pressure = pressure;			
 			this.humidity = humidity;
 			this.data = data;
 			this.Temp = Temp;
-			this.temp_min = temp_min;
+			//this.temp_min = temp_min;
 			
 		}
 		
@@ -88,54 +88,54 @@ public class forecasts{
 		 * Metodo che restituisce la temperatura massima
 		 * @return temp_max
 		 */
-		public Double getTemp_max() {
-			return temp_max;
-		}
+	//	public Double getTemp_max() {
+	//		return temp_max;
+		//}
 		
 		/**
 		 * Metodo che setta la temp_max
 		 * @param temp_max
 		 */
 
-		public void setTemp_max(double temp_max) {
-			this.temp_max = temp_max;
-		}
+	//	public void setTemp_max(double temp_max) {
+	//		this.temp_max = temp_max;
+		//}
 		
 		/**
 		 * Metodo che restituisce la temperatura minima
 		 * @return temp_min
 		 */
 
-		public double getTemp_min() {
-			return temp_min;
-		}
+		//public double getTemp_min() {
+		//	return temp_min;
+	//	}
 		
 		/**
 		 * Metodo che setta la temperatura minima
 		 * @param temp_min
 		 */
 
-		public void setTemp_min(double temp_min) {
-			this.temp_min = temp_min;
-		}
+		//public void setTemp_min(double temp_min) {
+		//	this.temp_min = temp_min;
+	//	}
 
 		/**
 		 * Metodo che restituisce  le informazioni riguardanti la temperatura percepita
 		 * @return feels_like
 		 */
 
-		public double getfeels_like() {
-			return feels_like;
-		}
+	//	public double getfeels_like() {
+		//	return feels_like;
+	//	}
 		
 		/**
 		 * Metodo che setta il feels_like
 		 * @param  double feels_like
 		 */
 
-		public void setfeels_like(double feels_like) {
-			this.feels_like = feels_like;
-		}
+		//public void setfeels_like(double feels_like) {
+		//	this.feels_like = feels_like;
+		//}
 		
 		/**
 		 * Metodo che restituisce le informazioni riguardanti la pressione
@@ -197,7 +197,7 @@ public class forecasts{
 		 */
 		public String toString() {
 			return  "  pressure=" + pressure + "data=" + data +", humidity="
-					+ humidity + ",temp=" + Temp + "temp_max="+ temp_max + "temp_min="+ temp_min + "feels_like=" + feels_like ;
+					+ humidity + ",temp=" + Temp/* + "temp_max="+ temp_max + "temp_min="+ temp_min + "feels_like=" + feels_like*/ ;
 		}
 
 
