@@ -19,13 +19,16 @@ import com.uni.mariostefano.meteo.esame.exception.ExceptionCity;
 import com.uni.mariostefano.meteo.esame.exception.WrongPeriod;
 import com.uni.mariostefano.meteo.esame.exception.WrongValue;
 import com.uni.mariostefano.meteo.esame.filters.Statistics;
-//- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
 @RestController
 
 public class Controller {
 	
 	@Autowired
-	Statistics s ;
+	Statistics s;
+
+
+
 	@Autowired
 	ServiceImpl si;
 	
@@ -58,7 +61,15 @@ public ResponseEntity<Object> readHistory (@RequestParam String cityName) throws
 	return new ResponseEntity<> (si.readHistory(cityName ), HttpStatus.OK);
 }
 @GetMapping (value="/sevenDay")
-public ResponseEntity<Object> sevenDay (@RequestParam String cityName) throws WrongValue  {
-	return new ResponseEntity<> (s.todayAverage(cityName) ,  HttpStatus.OK);
+public ResponseEntity<Object> sevenDay (@RequestParam String cityName) /*throws WrongValue*/  {
+	//return new ResponseEntity<> (s.todayAverage(cityName) ,  HttpStatus.OK);
+	try {
+        s = new Statistics();
+        return new ResponseEntity<>(s.todayAverage(cityName), HttpStatus.OK);
+        }
+	catch ( Exception e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
 }
 }

@@ -58,13 +58,13 @@ import java.util.Vector;
 		*/
 	
 	
-	public City(long id, String name,  String Nation, double 
-			pressure, float humidity, int feels_like) {
+	public City(long id, String name,  String Nation, int 
+			pressure, double humidity, String data, double Temp) {
 		this.id = id;
 		this.name = name;
 		
 		this.Nation = Nation;
-			// TODO Auto-generated constructor stub
+			
 		}
 	/**
 	 * Metodo che restituisce il nome	

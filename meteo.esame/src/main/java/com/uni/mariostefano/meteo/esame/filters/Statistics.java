@@ -19,10 +19,10 @@ import com.uni.mariostefano.meteo.esame.model.City;
 		
 		ServiceImpl service;
 		
-		public Statistics() {
+		/*public Statistics() {
 			
 		}
-		
+		*/
 		
 	
 		/**
