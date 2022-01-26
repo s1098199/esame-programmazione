@@ -87,7 +87,7 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 		JSONObject object = getCityW(name);
 		JSONArray toGive = new JSONArray();
 			
-		JSONArray forecastsArray = (JSONArray)object.get("list");
+		ArrayList forecastsArray = (ArrayList)object.get("list");
 		LinkedHashMap weather=new LinkedHashMap<>();
 		
 			JSONObject support;
@@ -105,7 +105,7 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 				weather=(LinkedHashMap) support.get("main");
 				pressure = (int) weather.get("pressure");
 				humidity=(int) weather.get("humidity");
-				temp=(int) weather.get("temp");
+				temp=(double) weather.get("temp");
 				data = (String) support.get("dt_txt");
 				JSONObject toReturn = new JSONObject();
 				toReturn.put("Pressure", pressure);
@@ -141,16 +141,16 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 		
 		
 		
-		ArrayList forecastsArray = (ArrayList)object.get("list");
+		ArrayList  forecastsArray = (ArrayList )object.get("list");
 		LinkedHashMap counter;
 		
 		Vector<forecasts> vector = new Vector<forecasts>(forecastsArray.size());
 		
 		
 		try {
-			
-			
+			//int i =0;
 			for (int i = 0; i<forecastsArray.size(); i++) {
+			//while(!forecastsArray.isEmpty()) {
 //				obj = new JSONObject();
 				forecasts weather = new forecasts();
 				counter = (LinkedHashMap) forecastsArray.get(i);				

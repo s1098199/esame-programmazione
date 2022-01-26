@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ansi.Ansi8BitColor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,16 +18,16 @@ import com.uni.mariostefano.meteo.esame.exception.EmptyString;
 import com.uni.mariostefano.meteo.esame.exception.ExceptionCity;
 import com.uni.mariostefano.meteo.esame.exception.WrongPeriod;
 import com.uni.mariostefano.meteo.esame.exception.WrongValue;
-import com.uni.mariostefano.meteo.esame.filters.*;
+import com.uni.mariostefano.meteo.esame.filters.Statistics;
+//- @org.springframework.beans.factory.annotation.Autowired(required=true)
 @RestController
 
 public class Controller {
 	
 	@Autowired
+	Statistics s ;
+	@Autowired
 	ServiceImpl si;
-	Statistics statistic = new Statistics();
-	//Service service;
-	//Statistics statistic = new Statistics();
 	
 /**
  * Rotta di tipo GET che mostra le informazioni attuali sulla pressione e umidità le previsioni 
@@ -58,6 +59,6 @@ public ResponseEntity<Object> readHistory (@RequestParam String cityName) throws
 }
 @GetMapping (value="/sevenDay")
 public ResponseEntity<Object> sevenDay (@RequestParam String cityName) throws WrongValue  {
-	return new ResponseEntity<> (statistic.todayAverage(cityName) ,  HttpStatus.OK);
+	return new ResponseEntity<> (s.todayAverage(cityName) ,  HttpStatus.OK);
 }
 }

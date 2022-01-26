@@ -80,8 +80,8 @@ public class forecasts{
 		 * @param temperature
 		 */
 
-		public void setTemp(double d) {
-			this.Temp = d;
+		public void setTemp(double Temp) {
+			this.Temp = Temp;
 		}
 
 		/**
@@ -117,7 +117,7 @@ public class forecasts{
 
 		//public void setTemp_min(double temp_min) {
 		//	this.temp_min = temp_min;
-	//	}
+ //	}
 
 		/**
 		 * Metodo che restituisce  le informazioni riguardanti la temperatura percepita
