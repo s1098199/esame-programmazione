@@ -1,6 +1,6 @@
 <h1 align="center"> esame-programmazione </h1>
 
-##METEO
+## METEO
 
 L'applicazione serve per fornire le informazioni della città richiesta, generando anche statistiche
 
@@ -30,7 +30,7 @@ https://github.com/s1098199/esame-programmazione
 <a name="Configurazione"></a>
 ## Configurazione
 
-Per usare il programma, viene utilizzato l'apikey, ma per semplificare la procedure è già inserito nel programma, quindinono bisogna andarla a richidere da Openweather.
+Per usare il programma, viene utilizzato l'apikey, ma per semplificare la procedure è già inserito nel programma, quindi non bisogna andarla a richidere da Openweather.
 
 <a name="rotte"></a>
 ## Rotte
@@ -40,7 +40,7 @@ Per usare le rotte tramite postman si utilizza il seguente indirizzo:
 ```
 localhost:8080
 ```
-![alt text]![WhatsApp Image 2022-01-31 at 19 30 45](https://user-images.githubusercontent.com/95343219/151861297-9c4889d7-af48-464d-b5c3-4d7d35d51b8d.jpeg)
+![WhatsApp Image 2022-01-31 at 19 30 45](https://user-images.githubusercontent.com/95343219/151861297-9c4889d7-af48-464d-b5c3-4d7d35d51b8d.jpeg)
 le rotte principali sono:
 
 "/General"       : ritorna previsione ristrette sulla città richiesta
@@ -62,7 +62,7 @@ le rotte principali sono:
 <a name="richieste"></a>
 ## Come può l'utente effettuare richieste?
 
-Basta avviare il programma come applicazione SpringBoot, assicurarsi di avere Postaman e mandarli le rotte aggiungendo la città, dove si vuole vedere le informazioni sul meteo
+Basta avviare il programma come applicazione SpringBoot, assicurarsi di avere Postaman e mandarli le rotte aggiungendo la città, dove si vuole vedere le informazioni del meteo
 
 ```
 localhost:8080\General?cityName=
