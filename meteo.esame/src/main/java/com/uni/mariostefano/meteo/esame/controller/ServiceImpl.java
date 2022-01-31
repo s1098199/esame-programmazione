@@ -224,8 +224,7 @@ public String save(String cityName) throws IOException {
 			write.append("data:"+((JSONObject) arr.get(i)).get("data").toString()+"\n");
 			write.append("humidity:"+((JSONObject) arr.get(i)).get("humidity").toString()+"\n");
 			write.append("pressure:"+((JSONObject) arr.get(i)).get("pressure").toString());
-		}
-		
+		}		
 		write.close();
 
 	}catch (IOException e) {System.out.println(e);};
