@@ -157,7 +157,8 @@ pressure:1020
 temp:285.66
 data:2022-02-04 18:00:00
 humidity:78.0
-pressure:1020temp:284.37
+pressure:1020
+temp:284.37
 data:2022-01-30 21:00:00
 humidity:77.0
 pressure:1020
