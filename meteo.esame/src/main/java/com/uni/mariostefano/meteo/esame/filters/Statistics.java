@@ -1,18 +1,16 @@
 package com.uni.mariostefano.meteo.esame.filters;
 
 
-import org.json.JSONObject;
+import org.json.simple.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.uni.mariostefano.meteo.esame.model.City;
 import com.uni.mariostefano.meteo.esame.controller.*;	
-//import com.uni.mariostefano.meteo.esame.controller.ServiceImpl;
+
 
 
 
 	/** Questa classe contiene i metodi necessari alle statistiche 
-	 * @author Mario De Berardinis
 	 * @author Stefano Bandello
 	 */
 
@@ -20,7 +18,7 @@ import com.uni.mariostefano.meteo.esame.controller.*;
 	public class Statistics  {
 
 	
-	ServiceImpl servizio ;//=  new ServiceImpl();
+	ServiceImpl servizio ;
 
 	@Autowired
 	public Statistics() {
@@ -31,12 +29,12 @@ import com.uni.mariostefano.meteo.esame.controller.*;
 	
 		/**
 		 * Questo metodo serve per calcolare le medie giornaliere.
-		 * @param name è il nome della città su cui si vogliono fare statistiche.
+		 * @param cityName è il nome della città su cui si vogliono fare statistiche.
 		 * @return JSONObject contenente il nome della città e le relative  medie
 		 */
 public JSONObject todayAverage(String cityName) {
 	         
-	        
+	 JSONObject object = new JSONObject();	        
 	      City city = new City(cityName);
 	        city = servizio.getCityWeatherRistrictfromApi(cityName);
 	        double temp_max_ave = 0;
@@ -68,7 +66,7 @@ public JSONObject todayAverage(String cityName) {
 	        effectiveDate = date;
 	        i=0;	      	     
 	    	        
-	       JSONObject object = new JSONObject();	         	        
+	        	        
 	       object.put("CityName", cityName);
 	       object.put("Temp_Max Average", temp_max_ave);
 	       object.put("Temp_Min Average", temp_min_ave);
@@ -79,7 +77,7 @@ public JSONObject todayAverage(String cityName) {
 
 		/**
 		 * Questo metodo serve per calcolare le medie su sette giorni.
-		 * @param name è il nome della città su cui si vogliono fare statistiche.
+		 * @param cityName è il nome della città su cui si vogliono fare statistiche.
 		 * @return JSONObject contenente il nome della città e le relative  medie
 		 */
 	    public JSONObject sevenDayAverage(String cityName) {

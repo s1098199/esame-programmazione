@@ -1,6 +1,8 @@
 package com.uni.mariostefano.meteo.esame.controller;
 
 import java.io.IOException;
+
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.uni.mariostefano.meteo.esame.filters.Statistics;
+import com.uni.mariostefano.meteo.esame.controller.*;
 
 
 /** Questa classe gestisce  chiamate al server 
@@ -97,19 +100,13 @@ public ResponseEntity<Object> readHistory (@RequestParam String cityName) throws
 /**
  * Rotta di tipo GET serve per calcolare le medie giornaliere.
  * @param cityName
- * @return SONObject contenente il nome della città e le relative  medie
+ * @return JSONObject contenente il nome della città e le relative  medie
  * @throws IOException
  */
 @GetMapping (value="/todayAverage")
 public ResponseEntity<Object> todayAverage (@RequestParam String cityName) throws IOException  {
-	 return new ResponseEntity<>(s.todayAverage(cityName).toString(), HttpStatus.OK);
-	/*try {
-        s = new Statistics();
-        return new ResponseEntity<>(s.todayAverage(cityName).toString(), HttpStatus.OK);
-        }
-	catch ( Exception e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }*/
+	 return new ResponseEntity<> (s.todayAverage(cityName), HttpStatus.OK);
+}
 
 }
-}
+

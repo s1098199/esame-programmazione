@@ -52,10 +52,12 @@ import java.util.Vector;
 		
 		/**Costruttore completo
 		 * @param name         nome della città
-		 * @param nation       nazione della città
+		 * @param Nation       nazione della città
 		 * @param id           id della città
-		 * @param coordinates  coordinate della città
-		 * @param vector       vettore delle previsioni ristrette
+		 * @param pressure     vettore delle previsioni ristrette
+		 * @param humidity     vettore delle previsioni ristrette
+		 * @param data         vettore delle previsioni ristrette
+		 * @param Temp         vettore delle previsioni ristrette
 		*/
 	
 	
@@ -77,7 +79,7 @@ import java.util.Vector;
 		
 		/**
 		 * Metodo che setta il nome
-		 * @param  String name
+		 * @param name String name
 		 */
 		public void setName(String name) {
 			this.name = name;
@@ -93,7 +95,7 @@ import java.util.Vector;
 		
 		/**
 		 * Metodo che setta la Nazione
-		 * @param String Nation
+		 * @param  Nation String Nation
 		 */
 		public void setNation(String Nation) {
 			this.Nation = Nation;
@@ -101,7 +103,7 @@ import java.util.Vector;
 		
 		/**
 		 * Metodo che setta l'Id
-		 * @param long id
+		 * @param id long id
 		 */
 		 	public void setId(long id) {
 			this.id = id;
@@ -155,7 +157,7 @@ import java.util.Vector;
 
 		/**
 		 * Override del metodo equals.
-		 * @param oggetto City da confrontare.
+		 * @param  obj oggetto City da confrontare.
 		 * @return true o false a seconda che i due oggetti siano uguali.
 		 */
 		@Override

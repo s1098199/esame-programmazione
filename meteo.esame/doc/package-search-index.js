@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.uni.mariostefano.meteo.esame"},{"l":"com.uni.mariostefano.meteo.esame.controller"},{"l":"com.uni.mariostefano.meteo.esame.exception"},{"l":"com.uni.mariostefano.meteo.esame.filters"},{"l":"com.uni.mariostefano.meteo.esame.model"}];updateSearchResults();

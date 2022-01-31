@@ -3,7 +3,6 @@ package com.uni.mariostefano.meteo.esame.exception;
     /**
      * Questa classe contiene il metodo che segnala l'eccezione nel caso di una stringa non ammessa per param
      * @author Stefano Bandello
-     * @author Mario De Berardinis
      *
      */
 

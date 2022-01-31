@@ -4,8 +4,6 @@ package com.uni.mariostefano.meteo.esame.controller;
 
 	import org.json.simple.JSONArray;
 	import org.json.simple.JSONObject;
-	
-
 	import com.uni.mariostefano.meteo.esame.model.*;
 
 
@@ -17,7 +15,7 @@ package com.uni.mariostefano.meteo.esame.controller;
 	 *  @author Stefano Bandello
 	 */
 	public class ToJSON {
-		City city = new City();
+	City city = new City();
 		
 		/**
 		 * Questo metodo restituisce il JSONObject corrispondente all'oggetto City passato in ingresso.
@@ -25,7 +23,6 @@ package com.uni.mariostefano.meteo.esame.controller;
 		 * @return il JSONObject che rappresenta la città.
 		 */
 		public JSONObject ToJSON(City city) {
-			
 			
 			JSONObject object = new JSONObject();
 			

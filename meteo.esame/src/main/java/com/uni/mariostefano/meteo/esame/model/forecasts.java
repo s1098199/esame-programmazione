@@ -60,7 +60,7 @@ public class forecasts{
 		
 		/**
 		 * Metodo che setta la temperatura
-		 * @param temperature
+		 * @param Temp temperature
 		 */
 
 		public void setTemp(double Temp) {
@@ -78,7 +78,7 @@ public class forecasts{
 		
 		/**
 		 * Metodo che setta le informazioni riguardanti la pressione
-		 * @param  double pressure
+		 * @param pressure double pressure
 		 */
 		public void setpressure(int pressure) {
 			this.pressure = pressure;
@@ -95,7 +95,7 @@ public class forecasts{
 		
 		/**
 		 * Metodo che setta le informazioni riguardanti l'umidità
-		 * @param  double humidity
+		 * @param humidity double humidity
 		 */
 
 		public void sethumidity(double humidity) {
@@ -113,7 +113,7 @@ public class forecasts{
 		
 		/**
 		 * Metodo che setta la data (giorno ed ora)
-		 * @param  String data
+		 * @param data String data
 		 */
 
 		public void setData(String data) {

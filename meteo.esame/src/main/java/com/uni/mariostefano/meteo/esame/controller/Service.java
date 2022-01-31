@@ -21,7 +21,7 @@ public interface Service {
 	
 	public abstract JSONObject getCityW(String city);
 	public abstract City getCityInfofromApi(String name);
-	public abstract JSONArray getfromApi(String city);
+	//public abstract JSONArray getfromApi(String city);
 	public abstract City getCityWeatherRistrictfromApi(String city);
 	public abstract String save(String city) throws IOException;
 	public String saveEveryHour(String cityName);	
