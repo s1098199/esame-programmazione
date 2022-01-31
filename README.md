@@ -95,6 +95,8 @@ localhost:8080\todayAverage?cityName=
 Tutta la documentazione del Codice Java si trova nella [Javadoc](https://github.com/s1098199/esame-programmazione/tree/main/meteo.esame/doc)
 
 <a name="Autore"></a>
+## Autore
+
 -Bandello stefano
 
 
