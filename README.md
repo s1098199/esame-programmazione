@@ -88,6 +88,7 @@ localhost:8080\readHistory?cityName=
 ```
 localhost:8080\todayAverage?cityName=
 ```
+
 <a name="Documentazione"></a>
 <a name="Autore"></a>
 <a name="intro"></a>
