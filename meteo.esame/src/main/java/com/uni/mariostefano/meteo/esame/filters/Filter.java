@@ -11,7 +11,6 @@ package com.uni.mariostefano.meteo.esame.filters;
 
 	/** Questa classe contiene i metodi necessari al filtraggio.
 	 * @author Stefano Bandello
-	 * @author Mario De Berardinis
 	 */
 
 	public class Filter {

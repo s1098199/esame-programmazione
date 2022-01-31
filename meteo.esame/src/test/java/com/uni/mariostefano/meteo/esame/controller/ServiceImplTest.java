@@ -19,18 +19,18 @@ import com.uni.mariostefano.meteo.esame.exception.ExceptionCity;
 	 * @author Stefano Bandello
 	 * @author Mario De Berardinis
 	 */
-	class ServiceImplTest {
+	/*class ServiceImplTest {
 
-		private ServiceImpl service;
+		private ServiceImpl s;
 	    private ArrayList<String> cities;
 	    
 		 /**
 	     * Inizializza i componenti necessari a testare i metodi.
 	     * @throws java.lang.Exception
 	     */
-		@BeforeEach
-		void setUp() throws Exception {
-			service = new ServiceImpl();
+		 /*   @BeforeEach
+	        void setUp() throws Exception {
+			s = new ServiceImpl();
 			cities = new ArrayList<String>();
 			}
 
@@ -38,7 +38,7 @@ import com.uni.mariostefano.meteo.esame.exception.ExceptionCity;
 	     * Serve per distruggere ciò che è stato inizializzato dal metodo setUp.
 	     * throws java.lang.Exception
 	     */
-		@AfterEach
+	/*	@AfterEach
 		void tearDown() throws Exception {
 		}
 		/**
@@ -51,7 +51,7 @@ import com.uni.mariostefano.meteo.esame.exception.ExceptionCity;
 	    	cities.add("Tortoreto");
 	        cities.add("Capri");
 	    	
-	       ExceptionCity e = assertThrows(ExceptionCity.class, () -> {service.readHistory(cities,1,"max",1);});
+	       ExceptionCity e = assertThrows(ExceptionCity.class, () -> {s.readHistory(cities,1,"max",1);});
 	    
 	        assertEquals("Città non trovata nello storico", e.getMex());
 	        
@@ -60,20 +60,22 @@ import com.uni.mariostefano.meteo.esame.exception.ExceptionCity;
 	    /**
 		 * Questo Test verifica se viene generata correttamente l'eccezione EmptyString.
 		 */
-		/*@Test
+	/*	@Test
 	    @DisplayName("Corretta generazione dell'eccezione EmptyString.")
-	    void readHistory2() {
+	    void readHistory(cityName) {
 		
-	    	cities.add("Chieuti");
+	    	cities.add("Capri");
 	        cities.add("");
 	    	
-	        EmptyString e = assertThrows(EmptyString.class, () -> {service.readHistory(cities,1,"max",1);});
+	        EmptyString e = assertThrows(EmptyString.class, () -> {s.readHistory(cityName);});
 	        
 	        assertEquals("Hai dimenticato di inserire la città...", e.getMex());
 	        
 	    }
-		*/
+	
+	}*/
 		
-	}
+		
+	
 
 

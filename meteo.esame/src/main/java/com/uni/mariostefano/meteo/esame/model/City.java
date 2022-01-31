@@ -2,8 +2,9 @@ package com.uni.mariostefano.meteo.esame.model;
 
 import java.util.Vector;
 
-
-//La seguenta classe descrive la creazione delle città
+/**La seguenta classe descrive la creazione delle città
+* @author Stefano Bandello
+*/
 	public class City {
 		
 		private String name;

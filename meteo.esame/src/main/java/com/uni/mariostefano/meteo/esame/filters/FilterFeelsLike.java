@@ -12,7 +12,6 @@ package com.uni.mariostefano.meteo.esame.filters;
 	/**
 	 * Questa classe implementa FilterStats e contiene i metodi per il filtraggio rispetto alla temperatura percepita.
 	 * @author Stefano Bandello
-	 * @author Mario De Berardinis
 	 */
 
 	public class FilterFeelsLike implements FilterStats {

@@ -10,7 +10,6 @@ package com.uni.mariostefano.meteo.esame.filters;
 	/**
 	 * Questa è l'interfaccia contenente i metodi per il filtraggio di value. 
 	 * @author Stefano Bandello
-	 * @author Mario De Berardinis 
 	 */
 
 	public interface FilterStats {

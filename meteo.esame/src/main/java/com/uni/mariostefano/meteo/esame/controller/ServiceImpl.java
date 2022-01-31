@@ -2,40 +2,40 @@ package com.uni.mariostefano.meteo.esame.controller;
 
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
+//import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
+//import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.Files;
+/*import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.ParseException;
+import java.text.ParseException;*/
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 //import java.util.HashMap;
-import java.util.Iterator;
+//import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.Scanner;
+//import java.util.Scanner;
 import java.util.Vector;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+//import java.util.stream.Collectors;
+//import java.util.stream.Stream;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.uni.mariostefano.meteo.esame.exception.EmptyString;
+/*import com.uni.mariostefano.meteo.esame.exception.EmptyString;
 import com.uni.mariostefano.meteo.esame.exception.ExceptionCity;
 import com.uni.mariostefano.meteo.esame.exception.WrongPeriod;
-import com.uni.mariostefano.meteo.esame.exception.WrongValue;
+import com.uni.mariostefano.meteo.esame.exception.WrongValue;*/
 import com.uni.mariostefano.meteo.esame.model.City;
 
 import com.uni.mariostefano.meteo.esame.model.forecasts;
@@ -44,20 +44,16 @@ import com.uni.mariostefano.meteo.esame.model.forecasts;
 /** Questa classe è l'implementazione dell'interfaccia Service.
  * Contiene i metodi che vengono utilizzati dal controller.
  * @author Stefano Bandello
- * @author Mario De Benardinis
  */
 
-
 @Service
-public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.Service {
-	
+public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.Service {	
 	
 	/**
 	 * api_key è la key necessaria per ottenere informazioni.
 	 */
 	private String api_key = "67e3d274028b01442141ddff3600d722";
-	
-	
+		
 	/**
 	 * Questo metodo prendere da forecasts le previsioni meteo di una città.
 	 * @param è il nome della città di cui si vuole conoscere le previsioni meteo.
@@ -66,42 +62,33 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 	public JSONObject getCityW(String city) {
 		
 		JSONObject obj;
-		String url = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid="+api_key;
-		
-		RestTemplate rt = new RestTemplate();
-		
+		String url = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid="+api_key;		
+		RestTemplate rt = new RestTemplate();		
 		obj = new JSONObject (rt.getForObject(url, JSONObject.class));
-		
 		return obj;
-	}
-	
+	}	
 
 	/**
-	 * Questo metodo utilizza getCityW per  prendere le previsioni sulla pressione della città richiesta.
+	 * Questo metodo utilizza getCityW per  prendere le previsioni sulla pressione e umidità e tempo della città richiesta.
 	 * @param  il nome della città che si vuole conoscere la pressione.
-	 * @return restituisce il JSONArray contente la pressione con la relativa data e ora.
+	 * @return restituisce il JSONArray contente la pressione, umidità e tempo  con la relativa data e ora.
 	 */
 
-	public JSONArray getfromApi(String name) {
-		
+	public JSONArray getfromApi(String name) {	
+	
 		JSONObject object = getCityW(name);
-		JSONArray toGive = new JSONArray();
-			
+		JSONArray toGive = new JSONArray();		
 		ArrayList forecastsArray = (ArrayList)object.get("list");
-		LinkedHashMap weather=new LinkedHashMap<>();
-		
-			JSONObject support;
+		LinkedHashMap weather=new LinkedHashMap<>();		
+		LinkedHashMap support =new LinkedHashMap<>();
 			double pressure;
 			double humidity;
 			double temp;
-			int i =0;
 			String data;
 			
-			while(!forecastsArray.isEmpty()) {
-				
-			
-			
-				support =(JSONObject) forecastsArray.get(i);
+			for (int i = 0; i<forecastsArray.size(); i++) {
+										
+				support =(LinkedHashMap) forecastsArray.get(i);
 				weather=(LinkedHashMap) support.get("main");
 				pressure = (int) weather.get("pressure");
 				humidity=(int) weather.get("humidity");
@@ -116,42 +103,39 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 				forecastsArray.remove(i);
 				i++;
 			}
-			return toGive;
-			
+			return toGive;			
 				
 		}
-			 
-	
-			
-	
-
 
 	/**
-	 * Questo metodo utilizza getCityW per  selezionare le previsioni meteo ristrette (umidità, pressione, temperatura max, min, percepita
-	 *  ).
+	 * Questo metodo utilizza getCityW per  selezionare le previsioni meteo ristrette.
 	 * @param name è il nome della città di cui si vogliono conoscere le previsioni ristrette.
 	 */
 	public City getCityWeatherRistrictfromApi(String name) {
 		
 		JSONObject object = getCityW(name);
-//		JSONObject obj=new JSONObject();
 		City city = new City(name);
-//		JSONArray arr = new JSONArray();
 		city = getCityInfofromApi(name);
-		
-		
-		
+/*try {
+			
+			LinkedHashMap cityObj =(LinkedHashMap) object.get("city");
+			String country = (String) cityObj.get("country");
+			int id = (int) cityObj.get("id");
+
+			city.setNation(country);
+			city.setId(id);
+		;
+		} catch(Exception e) {
+			e.printStackTrace();
+		}*/
+				
 		ArrayList  forecastsArray = (ArrayList )object.get("list");
-		LinkedHashMap counter;
-		
-		Vector<forecasts> vector = new Vector<forecasts>(forecastsArray.size());
-		
-		
+		LinkedHashMap counter;		
+		Vector<forecasts> vector = new Vector<forecasts>(forecastsArray.size());		
 		try {
-			//int i =0;
+
 			for (int i = 0; i<forecastsArray.size(); i++) {
-			//while(!forecastsArray.isEmpty()) {
-//				obj = new JSONObject();
+
 				forecasts weather = new forecasts();
 				counter = (LinkedHashMap) forecastsArray.get(i);				
 				weather.setData(counter.get("dt_txt").toString());
@@ -160,41 +144,28 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 				weather.setpressure((int) main.get("pressure"));
 				weather.sethumidity( (int) main.get("humidity"));
 				weather.setTemp((double) main.get("temp"));				
-				vector.add(weather); 
-//				obj.put("weather",weather);
-		
+				vector.add(weather);				
 			}
 	
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+				
 		city.setVector(vector);
-//		arr.add(obj);
 		return city;
 
 	}
-	
-
-	
-	
-	/**
-	 * Questo metodo viene richiamato da readHistoryError e da readPressurreHistory.
-	 * Si occupa della lettura dello storico della città passata in ingresso. A seconda che il flag sia true o false, il 
-	 * metodo andrà a leggere lo storico 
-	 * 
+			
+	/**.
+	 * Si occupa della lettura dello storico della città passata in ingresso. 
 	 * @param name è il nome della città di cui si vuole leggere lo storico.
-	 * @param flag indica quale storico andare a leggere.
-	 * @return il JSONArray che contiene tutte le informazioni sulla Pressione.
+	 * @return il JSONArray che contiene tutte le informazioni ristrette
 	 * @throws IOException se si verificano errori di input da file.
 	 */
 	
 	public JSONArray readHistory(String cityName) throws IOException {
 		
-		String path = "";
-		
-		    
+		String path = "";		    
 		    	path = System.getProperty("user.dir") +"\\"+ cityName + ".txt";		
 	
 		BufferedReader br = new BufferedReader(new FileReader(path));
@@ -228,18 +199,19 @@ public class ServiceImpl implements com.uni.mariostefano.meteo.esame.controller.
 		}
 			else if (ok3[0].equals("pressure")){
 				System.out.println(ok);								
-				obj.put(ok3[0],Double.valueOf(ok3[1]));
-				
+				obj.put(ok3[0],Double.valueOf(ok3[1]));				
 		}
 			
 			arr.add(obj);
 		}
-		
-		return arr;	
-		
+		return arr;			
 	}
 				
 	
+	/**Questo metodo richiama getCityWeatherRistrictfromApi(String name) e serve per salvare su file le previsioni meteo 	 
+	 * @param è il nome della città
+	 * @return una stringa contenente il path del file salvato.
+	 */
 public String save(String cityName) throws IOException {
 	
 	
@@ -292,15 +264,13 @@ public String save(String cityName) throws IOException {
 
 	}catch (IOException e) {System.out.println(e);};
 
-
-	return nameFile;
-        
-	
-	
-        
+ 	return nameFile;       
 	}
 
-
+/** Questo metodo richiama getCityWeatherRistrictfromApi(String name) e serve per salvare le previsioni meteo ogni ora.
+ * @param è il nome della città
+ * @return una stringa contenente il path del file salvato.
+ */
 public String saveEveryHour(String cityName) {
 	
 	String path = System.getProperty("user.dir") + "\\" + cityName ;
@@ -317,23 +287,25 @@ public String saveEveryHour(String cityName) {
 	    	try {
 				save(cityName);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-	    	
+			}	    	
 	    }
-	}, 0, 5, TimeUnit.HOURS);
-	
-	
+	}, 0, 5, TimeUnit.HOURS);	
+
 	return "Il file è stato salvato in " + path;
 	
 }
 	
-	public City getCityInfofromApi(String name) {
+/** Questo metodo serve per ottenere le informazioni sulla città da OpenWeather. Viene richiamato da
+* getCityWeatherRistrictfromApi(String name).
+* @param nome della città.
+* @return un oggetto di tipo città popolato delle informazioni sulla città.
+*/
+	public City getCityInfofromApi(String cityName) {
 		
-		JSONObject object = getCityW(name);
+		JSONObject object = getCityW(cityName);
 		
-		City city = new City(name);
+		City city = new City(cityName);
 		
 		try {
 			

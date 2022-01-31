@@ -15,16 +15,12 @@ package com.uni.mariostefano.meteo.esame.controller;
 
 	/** Questa classe contiene il metodo per la scrittura di una città in un JSONObject.
 	 *  @author Stefano Bandello
-	 *  @author Mario De Berardinis
 	 */
 	public class ToJSON {
 		City city = new City();
 		
-
-		
 		/**
 		 * Questo metodo restituisce il JSONObject corrispondente all'oggetto City passato in ingresso.
-		 * 
 		 * @param city città che si vuole come un JSONObject.
 		 * @return il JSONObject che rappresenta la città.
 		 */
@@ -35,9 +31,7 @@ package com.uni.mariostefano.meteo.esame.controller;
 			
 			object.put("name", city.getName());
 			object.put("Nation", city.getNation());
-			object.put("id", city.getId());
-
-			
+			object.put("id", city.getId());		
 			
 			JSONArray arr = new JSONArray();
 			
@@ -50,8 +44,7 @@ package com.uni.mariostefano.meteo.esame.controller;
 				forecasts.put("pressure", (city.getVector()).get(i).getpressure());
     			arr.add(i, forecasts);
 			}
-			
-			
+						
 			object.put("Weather", arr);
 			
 			return object;

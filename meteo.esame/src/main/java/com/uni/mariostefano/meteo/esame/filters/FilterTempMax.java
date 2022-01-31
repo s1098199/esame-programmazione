@@ -12,7 +12,6 @@ package com.uni.mariostefano.meteo.esame.filters;
 	/**
 	 * Questa classe implementa FilterStats e contiene i metodi per il filtraggio rispetto alla temperatura massima.
 	 * @author Stefano Bandello
-	 * @author Mario De Berardinis 
 	 */
 
 
