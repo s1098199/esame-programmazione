@@ -28,18 +28,19 @@ https://github.com/s1098199/esame-programmazione
 ```
 
 <a name="Configurazione"></a>
-##Configurazione
+## Configurazione
 
 Per usare il programma, viene utilizzato l'apikey, ma per semplificare la procedure è già inserito nel programma, quindinono bisogna andarla a richidere da Openweather.
 
 <a name="rotte"></a>
-##Rotte
+## Rotte
 
 Per usare le rotte tramite postman si utilizza il seguente indirizzo:
 
 ```
 localhost:8080
 ```
+![alt text]file:///C:/Users/pc/Desktop/WhatsApp%20Image%202022-01-31%20at%2019.30.45.jpeg
 
 le rotte principali sono:
 
@@ -60,7 +61,7 @@ le rotte principali sono:
 "/todayAverage"  : ritorna un JSONObject contenente il nome della città e le relative  medie.
 
 <a name="richieste"></a>
-##Come può l'utente effettuare richieste?
+## Come può l'utente effettuare richieste?
 
 Basta avviare il programma come applicazione SpringBoot, assicurarsi di avere Postaman e mandarli le rotte aggiungendo la città, dove si vuole vedere le informazioni sul meteo
 
