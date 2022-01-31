@@ -40,8 +40,7 @@ Per usare le rotte tramite postman si utilizza il seguente indirizzo:
 ```
 localhost:8080
 ```
-![alt text]file:///C:/Users/pc/Desktop/WhatsApp%20Image%202022-01-31%20at%2019.30.45.jpeg
-
+![alt text]![WhatsApp Image 2022-01-31 at 19 30 45](https://user-images.githubusercontent.com/95343219/151861297-9c4889d7-af48-464d-b5c3-4d7d35d51b8d.jpeg)
 le rotte principali sono:
 
 "/General"       : ritorna previsione ristrette sulla città richiesta
@@ -91,6 +90,12 @@ localhost:8080\todayAverage?cityName=
 ```
 
 <a name="Documentazione"></a>
+## Documentazione
+
+Tutta la documentazione del Codice Java si trova nella [Javadoc](https://github.com/s1098199/esame-programmazione/tree/main/meteo.esame/doc)
+
 <a name="Autore"></a>
-<a name="intro"></a>
+-Bandello stefano
+
+
 
